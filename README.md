@@ -1,4 +1,4 @@
-# Wizards-Chess
+# Wizards-Chess ♟️
 
 Members :
 
