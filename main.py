@@ -18,10 +18,10 @@ def run():
         if not player:
             result = engine.play(board, chess.engine.Limit(time=0.1))
             board.push(result.move)
-            #call arduino
             print(get_path(move_engine[2:] + str(result.move)))
-            #call arduino
+            # TODO: activate magnet
             print(get_path(str(result.move)))
+            # TODO: deactivate magnet
             move_engine = str(result.move)
             print("Computer has played : " + str(result.move))
             player = True
@@ -29,6 +29,7 @@ def run():
             input("Press enter when you have played!")
             capture()
             played_board = get_move_from_player()
+            print(played_board)
             move_player = diff(board, played_board)
             result_move = chess.Move.from_uci(str(move_player))
             board.push(result_move)
