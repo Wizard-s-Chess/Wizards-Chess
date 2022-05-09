@@ -1,6 +1,8 @@
 import chess
 import chess.engine
 from board import *
+from capture import *
+from computervision import *
 from graph import *
 
 
@@ -22,13 +24,11 @@ def run():
             print(get_path(str(result.move)))
             move_engine = str(result.move)
             print("Computer has played : " + str(result.move))
-            with open("board.txt", "w") as f:
-                f.write(str(board))
             player = True
         else:
             input("Press enter when you have played!")
-            with open("board.txt", "r") as f:
-                played_board = "".join(f.readlines())
+            capture()
+            played_board = get_move_from_player()
             move_player = diff(board, played_board)
             result_move = chess.Move.from_uci(str(move_player))
             board.push(result_move)
