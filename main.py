@@ -9,18 +9,18 @@ def run():
 
     board = chess.Board()
     player = False
-    move_engine = "a0a0"
-    move_player = "a0a0"
+    move_engine = "a1a1"
+    move_player = "a1a1"
 
     while not board.is_game_over():
         if not player:
             result = engine.play(board, chess.engine.Limit(time=0.1))
             board.push(result.move)
             #call arduino
-            print(get_path(move_engine[2:] + result.move))
+            print(get_path(move_engine[2:] + str(result.move)))
             #call arduino
-            print(get_path(result.move))
-            move_engine = result.move
+            print(get_path(str(result.move)))
+            move_engine = str(result.move)
             print("Computer has played : " + str(result.move))
             with open("board.txt", "w") as f:
                 f.write(str(board))
