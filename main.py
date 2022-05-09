@@ -1,5 +1,6 @@
 import chess
 import chess.engine
+from arduino import *
 from board import *
 from capture import *
 from computervision import *
@@ -18,9 +19,11 @@ def run():
         if not player:
             result = engine.play(board, chess.engine.Limit(time=0.1))
             board.push(result.move)
-            print(get_path(move_engine[2:] + str(result.move)))
+            path = get_path(move_engine[2:] + str(result.move))
+            move_motors(path)
             # TODO: activate magnet
-            print(get_path(str(result.move)))
+            path = get_path(str(result.move))
+            move_motors(path)
             # TODO: deactivate magnet
             move_engine = str(result.move)
             print("Computer has played : " + str(result.move))
