@@ -1,25 +1,7 @@
 import chess
 import chess.engine
-
-def convert_board(board):
-    converted_board = str(board).replace("\n", "").replace(" ", "")
-    pieces = "rqkbnrpPQKBNR"
-    for char in pieces:
-        converted_board = converted_board.replace(char,"X")
-    return converted_board
-
-def diff(previous_board, next_board):
-    previous_string = convert_board(previous_board)
-    next_string = convert_board(next_board)
-    diff = [i for i in range(len(previous_string)) if previous_string[i] != next_string[i]]
-    if previous_string[diff[0]] != 'X':
-        diff = list(reversed(diff))
-    initial_position = str(chr((diff[0]%8) + 97) + str(abs(diff[0]//8 - 8)))
-    final_position = str(chr((diff[1]%8) + 97) + str(abs(diff[1]//8 - 8)))
-    return initial_position + final_position
-
-def convert_move():
-    pass
+from board import *
+from graph import *
 
 
 def run():
@@ -27,11 +9,16 @@ def run():
 
     board = chess.Board()
     player = False
+    move = None
 
     while not board.is_game_over():
         if not player:
             result = engine.play(board, chess.engine.Limit(time=0.1))
             board.push(result.move)
+            #call arduino
+            print(get_path(move[2:] + result.move))
+            #call arduino
+            print(get_path(result.move))
             print("Computer has played : " + str(result.move))
             with open("board.txt", "w") as f:
                 f.write(str(board))
