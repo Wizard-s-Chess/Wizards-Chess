@@ -1,6 +1,6 @@
 # Wizards-Chess ♟️
 
-### Setup
+### Setup :
 
 ```pip install -r requirements.txt```
 
