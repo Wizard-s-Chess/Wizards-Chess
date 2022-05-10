@@ -1,6 +1,10 @@
 # Wizards-Chess ♟️
 
-Members :
+### Setup
+
+```pip install -r requirements.txt```
+
+### Members :
 
 | Name                | Email                       |
 |---------------------|-----------------------------|
