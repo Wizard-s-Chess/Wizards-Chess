@@ -6,7 +6,7 @@
 
 Run the following line in the terminal: ```pip install -r requirements.txt```
 
-### Members :
+## Members :
 
 | Name                | Email                       |
 |---------------------|-----------------------------|
