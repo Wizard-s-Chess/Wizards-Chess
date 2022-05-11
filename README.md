@@ -2,7 +2,7 @@
 
 ## Tool Setup :
 
-###Install Python dependencies
+### Install Python dependencies
 
 Run the following line in the terminal: ```pip install -r requirements.txt```
 
