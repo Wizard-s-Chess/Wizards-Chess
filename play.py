@@ -8,7 +8,7 @@ from graph import *
 import logging
 
 
-def launch_game():
+def launch_game(ser):
     engine = chess.engine.SimpleEngine.popen_uci(r'C:\Users\nadal\Downloads\stockfish_15_win_x64_avx2\stockfish_15_x64_avx2.exe')
 
     board = chess.Board()
@@ -23,12 +23,12 @@ def launch_game():
             logging.info("ENGINE PLAYED : " + str(result.move))
             path = get_path(move_engine[2:] + str(result.move))
             logging.info("MOVE MOTORS : " + str(path))
-            move_motors(path, active_magnet=True)
+            move_motors(ser, path, active_magnet=True)
             logging.info("ACTIVATE MAGNET")
             path = get_path(str(result.move))
             print("engine played : " + str(result.move))
             logging.info("MOVE MOTORS : " + str(path))
-            move_motors(path, active_magnet=False)
+            move_motors(ser, path, active_magnet=False)
             logging.info("DEACTIVATE MAGNET")
             move_engine = str(result.move)
             player = True

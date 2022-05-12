@@ -41,7 +41,7 @@ def convert_path_arduino(path):
         x_sink = sink[0]
         y_sink = sink[1]
         move = (x_source > x_sink) * 1 + (x_source < x_sink) * 2 + (y_source > y_sink) * 3 + (y_source < y_sink) * 4
-        moves.append(move)
+        moves.append(str(move))
     return moves
 
 
@@ -59,4 +59,4 @@ def get_path(move):
     path = nx.shortest_path(H,source=source, target=sink, method='dijkstra')
     path_edges = list(zip(path,path[1:]))
     moves = convert_path_arduino(path_edges)
-    return moves
+    return "".join(moves)
