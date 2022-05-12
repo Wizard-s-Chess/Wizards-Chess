@@ -5,10 +5,11 @@ Stepper xStepper(stepsPerRevolution, 3, 2);
 Stepper yStepper(stepsPerRevolution, 6, 5);
 long semiTime = 650;
 int incomingByte;
+int speedMotor = 1500;
 
 void setup() {
-   xStepper.setSpeed(1000);
-   yStepper.setSpeed(1000);
+   xStepper.setSpeed(speedMotor);
+   yStepper.setSpeed(speedMotor);
 
    Serial.begin(9600);
    delay(500);
