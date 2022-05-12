@@ -3,7 +3,7 @@
 const int stepsPerRevolution = 200;
 Stepper xStepper(stepsPerRevolution, 3, 2);
 Stepper yStepper(stepsPerRevolution, 6, 5);
-long semiTime = 650;
+long semiTime = 400;
 int incomingByte;
 int speedMotor = 1500;
 
