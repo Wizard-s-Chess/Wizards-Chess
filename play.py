@@ -23,14 +23,12 @@ def launch_game():
             logging.info("ENGINE PLAYED : " + str(result.move))
             path = get_path(move_engine[2:] + str(result.move))
             logging.info("MOVE MOTORS : " + str(path))
-            move_motors(path)
-            # TODO: activate magnet
+            move_motors(path, active_magnet=True)
             logging.info("ACTIVATE MAGNET")
             path = get_path(str(result.move))
             print("engine played : " + str(result.move))
             logging.info("MOVE MOTORS : " + str(path))
-            move_motors(path)
-            # TODO: deactivate magnet
+            move_motors(path, active_magnet=False)
             logging.info("DEACTIVATE MAGNET")
             move_engine = str(result.move)
             player = True
