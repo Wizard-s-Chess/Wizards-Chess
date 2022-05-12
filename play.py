@@ -27,6 +27,7 @@ def launch_game():
             # TODO: activate magnet
             logging.info("ACTIVATE MAGNET")
             path = get_path(str(result.move))
+            print("engine played : " + str(result.move))
             logging.info("MOVE MOTORS : " + str(path))
             move_motors(path)
             # TODO: deactivate magnet
@@ -38,9 +39,11 @@ def launch_game():
             capture()
             played_board = get_move_from_player()
             logging.info("PLAYED BOARD : " + str(played_board))
+            print(convert_board(board))
             move_player = diff(board, played_board)
+            print(move_player)
             result_move = chess.Move.from_uci(str(move_player))
-            logging.info("YOU PLAYED : " + str(result_move))
+            print("you played : " + str(result_move))
             board.push(result_move)
             player = False
     
