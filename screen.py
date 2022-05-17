@@ -89,7 +89,7 @@ def display():
   lcd_init()
  
   lcd_string("Wizards Chess",LCD_LINE_1)
-  lcd_string(";)",LCD_LINE_2)
+  lcd_string("MIT COURSE",LCD_LINE_2)
  
 if __name__ == '__main__':
     display()
