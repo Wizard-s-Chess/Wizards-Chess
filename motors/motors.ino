@@ -3,13 +3,16 @@
 const int stepsPerRevolution = 200;
 Stepper xStepper(stepsPerRevolution, 3, 2);
 Stepper yStepper(stepsPerRevolution, 6, 5);
-long semiTime = 650;
+long semiTime = 400;
 int incomingByte;
+int speedMotor = 1500;
+int pinMagnet = 13;
 
 void setup() {
-   xStepper.setSpeed(1000);
-   yStepper.setSpeed(1000);
-
+   xStepper.setSpeed(speedMotor);
+   yStepper.setSpeed(speedMotor);
+   pinMode(pinMagnet, OUTPUT);
+   
    Serial.begin(9600);
    delay(500);
 }
@@ -29,7 +32,21 @@ void loop() {
     if (incomingByte == '4') {
       goUp();
     }
+    if (incomingByte == 'm') {
+      activateMagnet();
+    }
+    if (incomingByte == 'n') {
+      deactivateMagnet();  
+    }
   }
+}
+
+void activateMagnet() {
+  digitalWrite(pinMagnet, HIGH);
+}
+
+void deactivateMagnet() {
+  digitalWrite(pinMagnet, LOW);
 }
 
 void goRight() {

@@ -1,10 +1,12 @@
 # Wizards-Chess ♟️
 
-### Setup :
+## Tool Setup :
 
-```pip install -r requirements.txt```
+### Install Python dependencies
 
-### Members :
+Run the following line in the terminal: ```pip install -r requirements.txt```
+
+## Members :
 
 | Name                | Email                       |
 |---------------------|-----------------------------|
