@@ -19,23 +19,6 @@ E_PULSE = 0.0005
 E_DELAY = 0.0005
  
 def lcd_init():
-  GPIO.setwarnings(False)
-  GPIO.setmode(GPIO.BCM)
-  GPIO.setup(LCD_E, GPIO.OUT)
-  GPIO.setup(LCD_RS, GPIO.OUT)
-  GPIO.setup(LCD_D4, GPIO.OUT)
-  GPIO.setup(LCD_D5, GPIO.OUT)
-  GPIO.setup(LCD_D6, GPIO.OUT)
-  GPIO.setup(LCD_D7, GPIO.OUT)
-
-  lcd_byte(0x33,LCD_CMD)
-  lcd_byte(0x32,LCD_CMD)
-  lcd_byte(0x06,LCD_CMD)
-  lcd_byte(0x0C,LCD_CMD)
-  lcd_byte(0x28,LCD_CMD)
-  lcd_byte(0x01,LCD_CMD)
-  time.sleep(E_DELAY)
-
   display("Wizards Chess", ";)")
  
 def lcd_byte(bits, mode):
@@ -87,5 +70,23 @@ def lcd_string(message,line):
     lcd_byte(ord(message[i]),LCD_CHR)
 
 def display(str_line_1, str_line_2):
+  GPIO.setwarnings(False)
+  GPIO.setmode(GPIO.BCM)
+  GPIO.setup(LCD_E, GPIO.OUT)
+  GPIO.setup(LCD_RS, GPIO.OUT)
+  GPIO.setup(LCD_D4, GPIO.OUT)
+  GPIO.setup(LCD_D5, GPIO.OUT)
+  GPIO.setup(LCD_D6, GPIO.OUT)
+  GPIO.setup(LCD_D7, GPIO.OUT)
+
+
+  lcd_byte(0x33,LCD_CMD)
+  lcd_byte(0x32,LCD_CMD)
+  lcd_byte(0x06,LCD_CMD)
+  lcd_byte(0x0C,LCD_CMD)
+  lcd_byte(0x28,LCD_CMD)
+  lcd_byte(0x01,LCD_CMD)
+  time.sleep(E_DELAY)
+  
   lcd_string(str_line_1, LCD_LINE_1)
   lcd_string(str_line_2, LCD_LINE_2)
