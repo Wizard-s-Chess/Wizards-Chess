@@ -5,7 +5,7 @@ from board import *
 from capture import *
 from computervision import *
 from graph import *
-import logging
+from choose_options import *
 
 
 def launch_game(ser):
@@ -20,23 +20,17 @@ def launch_game(ser):
         if not player:
             result = engine.play(board, chess.engine.Limit(time=0.1))
             board.push(result.move)
-            logging.info("ENGINE PLAYED : " + str(result.move))
             path = get_path(move_engine[2:] + str(result.move))
-            logging.info("MOVE MOTORS : " + str(path))
             move_motors(ser, path, active_magnet=True)
-            logging.info("ACTIVATE MAGNET")
             path = get_path(str(result.move))
             print("engine played : " + str(result.move))
-            logging.info("MOVE MOTORS : " + str(path))
             move_motors(ser, path, active_magnet=False)
-            logging.info("DEACTIVATE MAGNET")
             move_engine = str(result.move)
             player = True
         else:
             input("Press enter when you have played!")
             capture()
             played_board = get_move_from_player()
-            logging.info("PLAYED BOARD : " + str(played_board))
             print(convert_board(board))
             move_player = diff(board, played_board)
             print(move_player)

@@ -1,16 +1,13 @@
 import RPi.GPIO as GPIO
 import time
 
-def button_callback():
-    print("Button was pushed!")
+def buttons_init():
+    GPIO.setwarnings(False)
+    GPIO.setmode(GPIO.BCM)
+    GPIO.setup(22, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+    GPIO.setup(23, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
-GPIO.setwarnings(False)
-GPIO.setmode(GPIO.BCM)
-GPIO.setup(22, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-
-
-while True:
-    v = GPIO.input(22)
-    if v == 0:
-        button_callback()
-        time.sleep(1)
+def button_pressed():
+    v1 = GPIO.input(22)
+    v2 = GPIO.input(23)
+    return [v1 == 0, v2 == 0]

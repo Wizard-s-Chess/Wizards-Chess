@@ -35,6 +35,8 @@ def lcd_init():
   lcd_byte(0x28,LCD_CMD)
   lcd_byte(0x01,LCD_CMD)
   time.sleep(E_DELAY)
+
+  display("Wizards Chess", ";)")
  
 def lcd_byte(bits, mode):
   GPIO.output(LCD_RS, mode)
@@ -87,6 +89,3 @@ def lcd_string(message,line):
 def display(str_line_1, str_line_2):
   lcd_string(str_line_1, LCD_LINE_1)
   lcd_string(str_line_2, LCD_LINE_2)
- 
-if __name__ == '__main__':
-    display("Wizards Chess", ";)")
