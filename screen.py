@@ -19,6 +19,15 @@ E_PULSE = 0.0005
 E_DELAY = 0.0005
  
 def lcd_init():
+  GPIO.setwarnings(False)
+  GPIO.setmode(GPIO.BCM)
+  GPIO.setup(LCD_E, GPIO.OUT)
+  GPIO.setup(LCD_RS, GPIO.OUT)
+  GPIO.setup(LCD_D4, GPIO.OUT)
+  GPIO.setup(LCD_D5, GPIO.OUT)
+  GPIO.setup(LCD_D6, GPIO.OUT)
+  GPIO.setup(LCD_D7, GPIO.OUT)
+
   lcd_byte(0x33,LCD_CMD)
   lcd_byte(0x32,LCD_CMD)
   lcd_byte(0x06,LCD_CMD)
@@ -28,7 +37,6 @@ def lcd_init():
   time.sleep(E_DELAY)
  
 def lcd_byte(bits, mode):
- 
   GPIO.output(LCD_RS, mode)
   GPIO.output(LCD_D4, False)
   GPIO.output(LCD_D5, False)
@@ -76,20 +84,9 @@ def lcd_string(message,line):
   for i in range(LCD_WIDTH):
     lcd_byte(ord(message[i]),LCD_CHR)
 
-def display():
-  GPIO.setwarnings(False)
-  GPIO.setmode(GPIO.BCM)
-  GPIO.setup(LCD_E, GPIO.OUT)
-  GPIO.setup(LCD_RS, GPIO.OUT)
-  GPIO.setup(LCD_D4, GPIO.OUT)
-  GPIO.setup(LCD_D5, GPIO.OUT)
-  GPIO.setup(LCD_D6, GPIO.OUT)
-  GPIO.setup(LCD_D7, GPIO.OUT)
- 
-  lcd_init()
- 
-  lcd_string("Wizards Chess",LCD_LINE_1)
-  lcd_string(";)",LCD_LINE_2)
+def display(str_line_1, str_line_2):
+  lcd_string(str_line_1, LCD_LINE_1)
+  lcd_string(str_line_2, LCD_LINE_2)
  
 if __name__ == '__main__':
-    display()
+    display("Wizards Chess", ";)")
