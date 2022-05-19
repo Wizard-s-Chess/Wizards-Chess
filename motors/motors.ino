@@ -6,13 +6,13 @@ Stepper yStepper(stepsPerRevolution, 6, 5);
 long semiTime = 400;
 int incomingByte;
 int speedMotor = 1500;
-int pinMagnet = 13;
+int pinMagnet = 7;
 
 void setup() {
    xStepper.setSpeed(speedMotor);
    yStepper.setSpeed(speedMotor);
    pinMode(pinMagnet, OUTPUT);
-   
+      
    Serial.begin(9600);
    delay(500);
 }
