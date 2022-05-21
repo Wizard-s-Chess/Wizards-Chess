@@ -8,19 +8,20 @@ class ChessAI:
         self.board = chess.Board()
     #Plays automatically a move on the board, and returns the move that was made
     def play_move_auto(self):
-        res = self.engine.play(board, chess.engine.Limit(time=0.1))
+        res = self.engine.play(self.board, chess.engine.Limit(time=0.1))
         move = res.move
+        is_capture = self.is_capture(move)
         self.board.push(move)
-        return move
+        return (move,is_capture)
     #Plays a move given as a parameter, returns true if the move is performed(legal) and false if not
     def play_move(self,move):
         #Add return rating of the move, instead of legal or not
         if(self.is_move_legal(move)):
             res = chess.Move.from_uci(move)
+            is_capture = self.is_capture(move)
             self.board.push(res)
-            return True
-        return False
-    def commit_move(self,move):
+            return (True, is_capture)
+        return (False,False)
         
     def destroy(self):
         self.engine.quit()
@@ -32,7 +33,9 @@ class ChessAI:
     def is_checkmate(self):
 
         return self.board.is_checkmate()
-
+    def is_capture(self, move):
+        
+        return self.board.is_capture(move)
     #Checks if the current position is a checkmate.
 
     def is_stalemate(self):
@@ -53,12 +56,9 @@ class ChessAI:
 
     #Checks if the given pseudo-legal move is an en passant capture.
 
-    def is_capture(self, from_sqaure, to_square):
-
-        return self.board.is_capture(self.chess.Move(from_square=from_sqaure, to_square=to_square))
 
     #Checks if the given pseudo-legal move is a capture.
-    def is_game_over():
+    def is_game_over(self):
         return self.board.is_game_over()
     def reset(self):
         return self.board.reset_board()

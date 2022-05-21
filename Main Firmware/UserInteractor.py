@@ -10,13 +10,17 @@ class UserInteractor:
         buttons_init()
 
     def get_game_mode(self):
-        options = [("Choose mode",">Watch      Play"),("Choose color"," Watch     >Play")]
-        res = choose_between(options)
+        options = [("Choose mode",">Watch      Play"),("Choose mode"," Watch     >Play")]
+        res = self.choose_between(options)
         return res == 1
+
+    def choose_ai_level(self):
+        options = [["Pick level: 1-20", "Level " + str(i + 1)] for i in range(20)]
+        return choose_between(options)
     
     def get_player_starts(self):
         options = [("Choose color",">White     Black"),("Choose color"," White    >Black")]
-        res = choose_between(options)
+        res = self.choose_between(options)
         return res == 1
     
     def wait_for_player_confirmation(self):

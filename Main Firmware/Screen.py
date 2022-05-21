@@ -1,4 +1,5 @@
-import RPi.GPIO as GPIO
+if not __debug__:
+  import RPi.GPIO as GPIO
 import time
 
 LCD_RS = 7
@@ -70,23 +71,27 @@ def lcd_string(message,line):
     lcd_byte(ord(message[i]),LCD_CHR)
 
 def display(str_line_1, str_line_2):
-  GPIO.setwarnings(False)
-  GPIO.setmode(GPIO.BCM)
-  GPIO.setup(LCD_E, GPIO.OUT)
-  GPIO.setup(LCD_RS, GPIO.OUT)
-  GPIO.setup(LCD_D4, GPIO.OUT)
-  GPIO.setup(LCD_D5, GPIO.OUT)
-  GPIO.setup(LCD_D6, GPIO.OUT)
-  GPIO.setup(LCD_D7, GPIO.OUT)
+  if not __debug__:
+    GPIO.setwarnings(False)
+    GPIO.setmode(GPIO.BCM)
+    GPIO.setup(LCD_E, GPIO.OUT)
+    GPIO.setup(LCD_RS, GPIO.OUT)
+    GPIO.setup(LCD_D4, GPIO.OUT)
+    GPIO.setup(LCD_D5, GPIO.OUT)
+    GPIO.setup(LCD_D6, GPIO.OUT)
+    GPIO.setup(LCD_D7, GPIO.OUT)
 
 
-  lcd_byte(0x33,LCD_CMD)
-  lcd_byte(0x32,LCD_CMD)
-  lcd_byte(0x06,LCD_CMD)
-  lcd_byte(0x0C,LCD_CMD)
-  lcd_byte(0x28,LCD_CMD)
-  lcd_byte(0x01,LCD_CMD)
-  time.sleep(E_DELAY)
-  
-  lcd_string(str_line_1, LCD_LINE_1)
-  lcd_string(str_line_2, LCD_LINE_2)
+    lcd_byte(0x33,LCD_CMD)
+    lcd_byte(0x32,LCD_CMD)
+    lcd_byte(0x06,LCD_CMD)
+    lcd_byte(0x0C,LCD_CMD)
+    lcd_byte(0x28,LCD_CMD)
+    lcd_byte(0x01,LCD_CMD)
+    time.sleep(E_DELAY)
+    
+    lcd_string(str_line_1, LCD_LINE_1)
+    lcd_string(str_line_2, LCD_LINE_2)
+  else:
+    print(str_line_1)
+    print(str_line_2)
