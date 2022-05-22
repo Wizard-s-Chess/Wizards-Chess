@@ -18,6 +18,7 @@ corners = cv2.cornerSubPix(gray,np.float32(centroids),(5,5),(-1,-1),criteria)
 
 centroids = np.int0(centroids)
 corners = np.int0(corners)
-img[corners[:,1], corners[:,0]] = [0,255,0]
+for corner in corners:
+    img[corner[1], corner[0]] = [0,255,0]
 cv2.imwrite('subpixel5.png',img)
 
