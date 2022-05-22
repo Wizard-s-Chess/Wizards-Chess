@@ -25,7 +25,7 @@ gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
 ret, corners = cv2.findChessboardCorners(gray, (nline, ncol), None)
 corners2 = cv2.cornerSubPix(gray, corners, (11, 11), (-1, -1), criteria)
-cv2.drawChessboardCorners(img, (7, 7), corners2, ret)
+#cv2.drawChessboardCorners(img, (7, 7), corners2, ret)
 cv2.namedWindow("output", cv2.WINDOW_NORMAL)
 cv2.imshow("output", img)
 cv2.waitKey(0)
