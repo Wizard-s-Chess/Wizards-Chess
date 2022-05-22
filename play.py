@@ -9,7 +9,7 @@ from choose_options import *
 
 
 def launch_game(ser):
-    engine = chess.engine.SimpleEngine.popen_uci(r'C:\Users\nadal\Downloads\stockfish_15_win_x64_avx2\stockfish_15_x64_avx2.exe')
+    engine = chess.engine.SimpleEngine.popen_uci(r'C:\Users\jules\Downloads\stockfish_15_win_x64_avx2\stockfish_15_x64_avx2.exe')
 
     board = chess.Board()
     player = False
