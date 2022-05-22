@@ -61,6 +61,7 @@ from_y = 0
 until_y = 0
 i = 0
 
+previous_x = []
 while cell_nbr < 8:
     if cell_nbr % 8 == 0:
         from_y = 0
@@ -74,6 +75,7 @@ while cell_nbr < 8:
         until_y = y_list[i]
         until_x = x_list[i]
         i += 1
+    previous_x.append(until_x)
     square = board[floor(from_x) + reduce_cell : floor(until_x) - reduce_cell, floor(from_y) + reduce_cell : floor(until_y) - reduce_cell, :]
     cv2.imshow("output", square)
     cv2.waitKey(0)
@@ -82,8 +84,9 @@ while cell_nbr < 8:
 
 cell_nbr = 0
 i = 7
+j = 0
 while cell_nbr < 8:
-    from_x = x_list[0]
+    from_x = previous_x[j]
     if cell_nbr % 8 == 0:
         from_y = 0
     else:
@@ -96,6 +99,8 @@ while cell_nbr < 8:
         until_y = y_list[i]
         until_x = x_list[i]
         i += 1
+    previous_x[j] = until_x
+    j += 1
     square = board[floor(from_x) + reduce_cell : floor(until_x) - reduce_cell, floor(from_y) + reduce_cell : floor(until_y) - reduce_cell, :]
     cv2.imshow("output", square)
     cv2.waitKey(0)
@@ -104,8 +109,9 @@ while cell_nbr < 8:
 
 cell_nbr = 0
 i = 14
+j = 0
 while cell_nbr < 8:
-    from_x = x_list[7]
+    from_x = previous_x[j]
     if cell_nbr % 8 == 0:
         from_y = 0
     else:
@@ -118,6 +124,8 @@ while cell_nbr < 8:
         until_y = y_list[i]
         until_x = x_list[i]
         i += 1
+    previous_x[j] = until_x
+    j += 1
     square = board[floor(from_x) + reduce_cell : floor(until_x) - reduce_cell, floor(from_y) + reduce_cell : floor(until_y) - reduce_cell, :]
     cv2.imshow("output", square)
     cv2.waitKey(0)
@@ -126,8 +134,9 @@ while cell_nbr < 8:
 
 cell_nbr = 0
 i = 21
+j = 0
 while cell_nbr < 8:
-    from_x = x_list[14]
+    from_x = previous_x[j]
     if cell_nbr % 8 == 0:
         from_y = 0
     else:
@@ -140,6 +149,8 @@ while cell_nbr < 8:
         until_y = y_list[i]
         until_x = x_list[i]
         i += 1
+    previous_x[j] = until_x
+    j += 1
     square = board[floor(from_x) + reduce_cell : floor(until_x) - reduce_cell, floor(from_y) + reduce_cell : floor(until_y) - reduce_cell, :]
     cv2.imshow("output", square)
     cv2.waitKey(0)
@@ -148,8 +159,9 @@ while cell_nbr < 8:
 
 cell_nbr = 0
 i = 28
+j = 0
 while cell_nbr < 8:
-    from_x = x_list[21]
+    from_x = previous_x[j]
     if cell_nbr % 8 == 0:
         from_y = 0
     else:
@@ -162,6 +174,8 @@ while cell_nbr < 8:
         until_y = y_list[i]
         until_x = x_list[i]
         i += 1
+    previous_x[j] = until_x
+    j += 1
     square = board[floor(from_x) + reduce_cell : floor(until_x) - reduce_cell, floor(from_y) + reduce_cell : floor(until_y) - reduce_cell, :]
     cv2.imshow("output", square)
     cv2.waitKey(0)
@@ -170,8 +184,9 @@ while cell_nbr < 8:
 
 cell_nbr = 0
 i = 35
+j = 0
 while cell_nbr < 8:
-    from_x = x_list[28]
+    from_x = previous_x[j]
     if cell_nbr % 8 == 0:
         from_y = 0
     else:
@@ -184,6 +199,8 @@ while cell_nbr < 8:
         until_y = y_list[i]
         until_x = x_list[i]
         i += 1
+    previous_x[j] = until_x
+    j += 1
     square = board[floor(from_x) + reduce_cell : floor(until_x) - reduce_cell, floor(from_y) + reduce_cell : floor(until_y) - reduce_cell, :]
     cv2.imshow("output", square)
     cv2.waitKey(0)
@@ -193,8 +210,9 @@ while cell_nbr < 8:
 
 cell_nbr = 0
 i = 42
+j = 0
 while cell_nbr < 8:
-    from_x = x_list[35]
+    from_x = previous_x[j]
     if cell_nbr % 8 == 0:
         from_y = 0
     else:
@@ -207,6 +225,8 @@ while cell_nbr < 8:
         until_y = y_list[i]
         until_x = x_list[i]
         i += 1
+    previous_x[j] = until_x
+    j += 1
     square = board[floor(from_x) + reduce_cell : floor(until_x) - reduce_cell, floor(from_y) + reduce_cell : floor(until_y) - reduce_cell, :]
     cv2.imshow("output", square)
     cv2.waitKey(0)
@@ -215,8 +235,10 @@ while cell_nbr < 8:
 
 cell_nbr = 0
 i = 42
+j = 0
 while cell_nbr < 8:
-    from_x = x_list[42]
+    from_x = previous_x[j]
+    j += 1
     if cell_nbr % 8 == 0:
         from_y = 0
     else:
