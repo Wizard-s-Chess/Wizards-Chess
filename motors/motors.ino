@@ -17,8 +17,8 @@ int incomingByte;
 int speedMotor = 1500;
 int pinMagnet = 7;
 int ledPin = 13;
-int xButton = A0;
-int yButton = A1;
+int xButton = 11;
+int yButton = 12;
 int x;
 int y;
 void setup() {
@@ -57,6 +57,9 @@ void loop() {
     }
     if (incomingByte == '4') {
       goUp();
+    }
+    if (incomingByte == '5') {
+      go_diagonal_up_right();
     }
     if (incomingByte == 'm') {
       activateMagnet();
@@ -99,7 +102,10 @@ void goRight() {
   }*/
   x=x+1;
   EEPROM.write(0, x);
-  delay(500);
+}
+void go_diagonal_up_right(){
+  xStepper.step(stepsPerHalfSquare);
+  yStepper.step(stepsPerHalfSquare);
 }
 
 void goLeft() {
@@ -119,7 +125,6 @@ void goLeft() {
     x =0;
   }
   EEPROM.write(0, x);
-  delay(500);
 }
 
 void goUp() {
@@ -133,7 +138,6 @@ void goUp() {
   
   y=y+1;
   EEPROM.write(1, y);
-  delay(500);
 }
 
 void goDown() {/*
@@ -152,7 +156,6 @@ void goDown() {/*
     y=0;
   }*/
   EEPROM.write(1, y);
-  delay(500);
 }
 void goHome(){
   for(int state = digitalRead(xButton); state !=0 ;state = digitalRead(xButton)){
