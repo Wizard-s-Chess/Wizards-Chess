@@ -17,7 +17,6 @@ upper_red2 = np.array([180, 255, 255])
 lower_green = np.array([50, 60, 60])
 upper_green = np.array([70, 255, 255])
 
-res = ""
 
 
 """lower_red = np.array([0, 100, 100])
@@ -53,7 +52,7 @@ class ComputerVision:
         print(move_player)
         return move_player
 
-    def try_range(square):
+    def try_range(square,res):
         hsv = cv2.cvtColor(square, cv2.COLOR_BGR2HSV)
 
         mask_green =  cv2.inRange(hsv, lower_green, upper_green)
@@ -69,6 +68,7 @@ class ComputerVision:
             res += "x" 
         else:
             res += '.'
+        return res
 
     def process_image():
         cropXBegin = 60
@@ -88,7 +88,7 @@ class ComputerVision:
         gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
         board = img
-
+        res = ""
         x_list = []
         y_list = []
 
@@ -140,7 +140,7 @@ class ComputerVision:
                 i += 1
             previous_x.append(until_x)
             square = board[floor(from_x) + reduce_cell : floor(until_x) - reduce_cell, floor(from_y) + reduce_cell : floor(until_y) - reduce_cell, :]
-            ComputerVision.try_range(square)
+            res += ComputerVision.try_range(square,res)
             cell_nbr += 1
 
         print(res)
@@ -164,7 +164,7 @@ class ComputerVision:
             previous_x[j] = until_x
             j += 1
             square = board[floor(from_x) + reduce_cell : floor(until_x) - reduce_cell, floor(from_y) + reduce_cell : floor(until_y) - reduce_cell, :]
-            ComputerVision.try_range(square)
+            res += ComputerVision.try_range(square,res)
             cell_nbr += 1
 
         print(res)
@@ -188,7 +188,7 @@ class ComputerVision:
             previous_x[j] = until_x
             j += 1
             square = board[floor(from_x) + reduce_cell : floor(until_x) - reduce_cell, floor(from_y) + reduce_cell : floor(until_y) - reduce_cell, :]
-            ComputerVision.try_range(square)
+            res += ComputerVision.try_range(square,res)
             cell_nbr += 1
 
         cell_nbr = 0
@@ -211,7 +211,7 @@ class ComputerVision:
             previous_x[j] = until_x
             j += 1
             square = board[floor(from_x) + reduce_cell : floor(until_x) - reduce_cell, floor(from_y) + reduce_cell : floor(until_y) - reduce_cell, :]
-            ComputerVision.try_range(square)
+            res += ComputerVision.try_range(square,res)
             cell_nbr += 1
 
         cell_nbr = 0
@@ -234,7 +234,7 @@ class ComputerVision:
             previous_x[j] = until_x
             j += 1
             square = board[floor(from_x) + reduce_cell : floor(until_x) - reduce_cell, floor(from_y) + reduce_cell : floor(until_y) - reduce_cell, :]
-            ComputerVision.try_range(square)
+            res += ComputerVision.try_range(square,res)
             cell_nbr += 1
 
         cell_nbr = 0
@@ -257,7 +257,7 @@ class ComputerVision:
             previous_x[j] = until_x
             j += 1
             square = board[floor(from_x) + reduce_cell : floor(until_x) - reduce_cell, floor(from_y) + reduce_cell : floor(until_y) - reduce_cell, :]
-            ComputerVision.try_range(square)
+            res += ComputerVision.try_range(square,res)
             cell_nbr += 1
 
 
@@ -281,7 +281,7 @@ class ComputerVision:
             previous_x[j] = until_x
             j += 1
             square = board[floor(from_x) + reduce_cell : floor(until_x) - reduce_cell, floor(from_y) + reduce_cell : floor(until_y) - reduce_cell, :]
-            ComputerVision.try_range(square)
+            res += ComputerVision.try_range(square,res)
             cell_nbr += 1
 
         cell_nbr = 0
@@ -303,7 +303,7 @@ class ComputerVision:
                 until_x = board.shape[1]
                 i += 1
             square = board[floor(from_x) + reduce_cell : floor(until_x) - reduce_cell, floor(from_y) + reduce_cell : floor(until_y) - reduce_cell, :]
-            ComputerVision.try_range(square)
+            res += ComputerVision.try_range(square,res)
             cell_nbr += 1
 
         return res
