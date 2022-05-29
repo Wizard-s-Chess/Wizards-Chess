@@ -18,7 +18,7 @@ class ChessAI:
         #Add return rating of the move, instead of legal or not
         if(self.is_move_legal(move)):
             res = chess.Move.from_uci(move)
-            is_capture = self.is_capture(move)
+            is_capture = self.is_capture(res)
             self.board.push(res)
             return (True, is_capture)
         return (False,False)
