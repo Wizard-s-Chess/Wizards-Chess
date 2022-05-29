@@ -16,19 +16,19 @@ upper_green = np.array([70, 255, 255])
 """lower_red = np.array([0, 100, 100])
 upper_red = np.array([10, 255, 255])"""
 class ComputerVision:
-    def capture():
+    def capture(self):
         url = "http://192.168.4.1/capture"
         req = requests.get(url)
         with open("chess.jpg", 'wb') as f:
             f.write(req.content)
-    def convert_board(board):
+    def convert_board(self,board):
         converted_board = str(board).replace("\n", "").replace(" ", "")
         pieces = "rqkbnrpPQKBNR"
         for char in pieces:
             converted_board = converted_board.replace(char,"X")
         return converted_board
 
-    def diff(previous_board, next_board):
+    def diff(self,previous_board, next_board):
         previous_string = convert_board(previous_board)
         next_string = convert_board(next_board)
         diff = [i for i in range(len(previous_string)) if previous_string[i] != next_string[i]]
@@ -38,7 +38,7 @@ class ComputerVision:
         final_position = str(chr((diff[1]%8) + 97) + str(abs(diff[1]//8 - 8)))
         return initial_position + final_position
     #returns the move object from the camera
-    def get_player_move_from_camera(board):
+    def get_player_move_from_camera(self,board):
         capture()
         played_board = process_image()
         print(convert_board(board))
@@ -46,7 +46,7 @@ class ComputerVision:
         print(move_player)
         return move_player
 
-    def process_image():
+    def process_image(self):
         cropXBegin = 60
         cropXEnd = 76
         cropYTop = 22
@@ -285,7 +285,7 @@ class ComputerVision:
 
         return res
 
-    def try_range(square):
+    def try_range(self,square):
         global res
         hsv = cv2.cvtColor(square, cv2.COLOR_BGR2HSV)
 
