@@ -1,6 +1,10 @@
+import numpy as np
 import cv2
 import numpy as np
-import requests
+from math import floor
+import imutils
+import os
+import requests 
 """lower_green = np.array([36, 60, 60])
 upper_green = np.array([86, 255, 255])
 """
@@ -12,6 +16,9 @@ upper_red2 = np.array([180, 255, 255])
 
 lower_green = np.array([50, 60, 60])
 upper_green = np.array([70, 255, 255])
+
+res = ""
+
 
 """lower_red = np.array([0, 100, 100])
 upper_red = np.array([10, 255, 255])"""
@@ -45,6 +52,23 @@ class ComputerVision:
         move_player = ComputerVision.diff(board, played_board)
         print(move_player)
         return move_player
+
+    def try_range(square):
+        hsv = cv2.cvtColor(square, cv2.COLOR_BGR2HSV)
+
+        mask_green =  cv2.inRange(hsv, lower_green, upper_green)
+        hasGreen = np.sum(mask_green)
+
+        mask_red =  cv2.inRange(hsv, lower_red, upper_red)
+        hasRed = np.sum(mask_red)
+
+        mask_red2 =  cv2.inRange(hsv, lower_red2, upper_red2)
+        hasRed2 = np.sum(mask_red2)
+
+        if hasGreen > 750 or hasRed > 500 or hasRed2 > 500:
+            res += "x" 
+        else:
+            res += '.'
 
     def process_image():
         cropXBegin = 60
@@ -100,7 +124,6 @@ class ComputerVision:
         until_y = 0
         i = 0
 
-        res = ""
         previous_x = []
         while cell_nbr < 8:
             if cell_nbr % 8 == 0:
@@ -285,21 +308,5 @@ class ComputerVision:
 
         return res
 
-    def try_range(square):
-        global res
-        hsv = cv2.cvtColor(square, cv2.COLOR_BGR2HSV)
-
-        mask_green =  cv2.inRange(hsv, lower_green, upper_green)
-        hasGreen = np.sum(mask_green)
-
-        mask_red =  cv2.inRange(hsv, lower_red, upper_red)
-        hasRed = np.sum(mask_red)
-
-        mask_red2 =  cv2.inRange(hsv, lower_red2, upper_red2)
-        hasRed2 = np.sum(mask_red2)
-
-        if hasGreen > 750 or hasRed > 500 or hasRed2 > 500:
-            res += "x" 
-        else:
-            res += '.'
+    
 
