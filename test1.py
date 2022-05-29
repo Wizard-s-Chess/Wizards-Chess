@@ -8,18 +8,18 @@ from math import floor
 import imutils
 import os
 
-cropXBegin = 60
-cropXEnd = 76
-cropYTop = 22
-cropYBottom = 36 
+cropXBegin = 130
+cropXEnd = 120
+cropYTop = 500
+cropYBottom = 70 
 nline = 7
 ncol = 7
 
-img = cv2.imread("./test.jpg")
+img = cv2.imread("./chess.jpg")
 img = imutils.rotate_bound(img, -3)
 img = img[cropYTop:img.shape[0] - cropYBottom, cropXBegin:img.shape[1] - cropXEnd, :]
-img = cv2.rotate(img, cv2.ROTATE_180)
-cv2.waitKey(0)
+#img = cv2.rotate(img, cv2.ROTATE_180)
+cv2.namedWindow("output", cv2.WINDOW_NORMAL)
 cv2.imshow("output", img)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
