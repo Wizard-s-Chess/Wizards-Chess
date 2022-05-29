@@ -33,7 +33,7 @@ void setup() {
    pinMode(yButton, INPUT);
    pinMode(A5, OUTPUT);
    digitalWrite(A5,HIGH);
-   deactivateMagnet();
+   restMagnet();
       
    Serial.begin(9600);
    delay(500);
@@ -68,11 +68,17 @@ void loop() {
       deactivateMagnet();  
     }
     if(incomingByte == 'f'){
+      restMagnet();
       Serial.write("f");
     }
   }
 }
-
+void restMagnet(){
+  digitalWrite(activatePin, LOW);
+  digitalWrite(deactivatePin, LOW);
+  analogWrite(powerPin, 0);
+  
+}
 void activateMagnet() {
   digitalWrite(activatePin, HIGH);
   digitalWrite(deactivatePin, LOW);
