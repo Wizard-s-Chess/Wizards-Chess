@@ -2,7 +2,7 @@
 import ChessboardGraph
 import PhysicalBoard
 import UserInteractor
-import ComputerVision
+from ComputerVision import ComputerVision
 import ChessAI
 import time
 class WizardsChess:
@@ -17,7 +17,7 @@ class WizardsChess:
         
     def start(self):
         self.is_game_finished = False
-        player_mode = self.user_interactor.get_game_mode()
+        player_mode = True#self.user_interactor.get_game_mode()
         #level = self.user_interactor.choose_ai_level()
         if player_mode:
             self.play_human_vs_ai()
