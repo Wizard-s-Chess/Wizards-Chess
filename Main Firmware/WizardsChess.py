@@ -56,8 +56,8 @@ class WizardsChess:
                     input("press when played")
 
                     player_move = ComputerVision.get_player_move_from_camera(self.chess_ai.get_board())
-                    
                     (is_move_performed,is_capture) = self.chess_ai.play_move(player_move)
+                    print(player_move,is_move_performed)
                     #if(not(is_move_performed)):
                     #    self.user_interactor.display_try_again()
             else:
