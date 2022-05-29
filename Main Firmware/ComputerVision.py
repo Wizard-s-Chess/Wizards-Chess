@@ -45,11 +45,14 @@ class ComputerVision:
         return initial_position + final_position
     #returns the move object from the camera
     def get_player_move_from_camera(board):
+        print('a')
         ComputerVision.capture()
+        print('b')
         played_board = ComputerVision.process_image()
         #print(ComputerVision.convert_board(board))
+        print('c')
         move_player = ComputerVision.diff(board, played_board)
-        #print(move_player)
+        print(move_player)
         return move_player
 
     def try_range(square,res):
