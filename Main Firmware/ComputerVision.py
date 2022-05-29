@@ -17,8 +17,6 @@ upper_red2 = np.array([180, 255, 255])
 lower_green = np.array([50, 70, 70])
 upper_green = np.array([70, 255, 255])
 
-
-
 """lower_red = np.array([0, 100, 100])
 upper_red = np.array([10, 255, 255])"""
 class ComputerVision:
@@ -45,22 +43,16 @@ class ComputerVision:
         return initial_position + final_position
     #returns the move object from the camera
     def get_player_move_from_camera(board):
-        print('a')
         ComputerVision.capture()
-        print('b')
         played_board = ComputerVision.process_image()
         #print(ComputerVision.convert_board(board))
-        print('c')
         move_player = ComputerVision.diff(board, played_board)
         print(move_player)
         return move_player
 
     def try_range(square):
-        """cv2.imshow("output", square)
-        cv2.waitKey(0)
-        cv2.destroyAllWindows()"""
         hsv = cv2.cvtColor(square, cv2.COLOR_BGR2HSV)
-        mask_green =  cv2.inRange(hsv, lower_green, upper_green)
+        mask_green = cv2.inRange(hsv, lower_green, upper_green)
         hasGreen = np.sum(mask_green)
 
         mask_red =  cv2.inRange(hsv, lower_red, upper_red)
@@ -76,10 +68,10 @@ class ComputerVision:
             return '.'
 
     def process_image():
-        cropXBegin = 170
-        cropXEnd = 250
-        cropYTop = 63
-        cropYBottom = 122
+        cropXBegin = 125
+        cropXEnd = 50
+        cropYTop = 250
+        cropYBottom = 175
         nline = 7
         ncol = 7
 
@@ -87,11 +79,10 @@ class ComputerVision:
         img = imutils.rotate_bound(img, -2)
         img = cv2.rotate(img, cv2.ROTATE_90_COUNTERCLOCKWISE)
         img = cv2.flip(img,1)
+        img = img[cropYTop:img.shape[0] - cropYBottom, cropXBegin:img.shape[1] - cropXEnd, :]
         cv2.imshow("output", img)
         cv2.waitKey(0)
         cv2.destroyAllWindows()
-        gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-        criteria = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER, 30, 0.001)
 
         x_list = []
         y_list = []
@@ -106,31 +97,25 @@ class ComputerVision:
                             y_list.append(int(coord))
                         is_x = not is_x
         else:
+            gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
             ret, corners = cv2.findChessboardCorners(gray, (nline, ncol), None)
+            criteria = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER, 30, 0.001)
             corners2 = cv2.cornerSubPix(gray, corners, (11, 11), (-1, -1), criteria)
             cv2.drawChessboardCorners(img, (7, 7), corners2, ret)
+            cv2.namedWindow("output", cv2.WINDOW_NORMAL)
+            cv2.imshow("output", img)
+            cv2.waitKey(0)
+            cv2.destroyAllWindows()
             with open('square_indices.txt', 'w') as f:
                 for coord in corners2:
                     x_list.append(coord[0][1])
                     y_list.append(coord[0][0])
                     f.write("%d\n" % floor(coord[0][1]))
                     f.write("%d\n" % floor(coord[0][0]))
-                    
-        img = img[cropYTop:img.shape[0] - cropYBottom, cropXBegin:img.shape[1] - cropXEnd, :]
-        
-        cv2.imshow("output", img)
-        cv2.waitKey(0)
-        cv2.destroyAllWindows()
-
-
 
         board = img
         
-
-
-        #print(list(zip(x_list, y_list)))
-
-        reduce_cell = 1
+        reduce_cell = 0
 
         cell_nbr = 0
         from_x = 0
