@@ -9,16 +9,16 @@ import imutils
 import os
 
 cropXBegin = 60
-cropXEnd = 70
+cropXEnd = 76
 cropYTop = 22
-cropYBottom = 35 
+cropYBottom = 36 
 nline = 7
 ncol = 7
 
-img = cv2.imread("./fullChess.jpg")
+img = cv2.imread("./test.jpg")
 img = imutils.rotate_bound(img, -3)
 img = img[cropYTop:img.shape[0] - cropYBottom, cropXBegin:img.shape[1] - cropXEnd, :]
-img = cv2.rotate(img, cv2.ROTATE_90_CLOCKWISE)
+img = cv2.rotate(img, cv2.ROTATE_180)
 cv2.waitKey(0)
 cv2.imshow("output", img)
 cv2.waitKey(0)
@@ -65,7 +65,7 @@ if os.path.exists('./square_indices.txt'):
 else:
     ret, corners = cv2.findChessboardCorners(gray, (nline, ncol), None)
     corners2 = cv2.cornerSubPix(gray, corners, (11, 11), (-1, -1), criteria)
-    #cv2.drawChessboardCorners(img, (7, 7), corners2, ret)
+    cv2.drawChessboardCorners(img, (7, 7), corners2, ret)
     cv2.namedWindow("output", cv2.WINDOW_NORMAL)
     cv2.imshow("output", img)
     cv2.waitKey(0)

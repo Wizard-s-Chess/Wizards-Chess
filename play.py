@@ -31,7 +31,7 @@ def launch_game(ser):
             move_engine = str(result.move)
             player = True
         else:
-            display("You turn : press", "OK to confirm!")
+            display("Your turn: press", "OK to confirm!")
             while not button_pressed()[1]:
                 pass
             display("Wait please ...", "Engine playing")
