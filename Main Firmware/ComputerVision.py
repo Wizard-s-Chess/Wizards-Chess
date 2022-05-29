@@ -35,8 +35,6 @@ class ComputerVision:
     def diff(previous_board, next_board):
         previous_string = ComputerVision.convert_board(previous_board)[::-1]
         next_string = ComputerVision.convert_board(next_board)[::-1]
-        print("zzz", previous_string)
-        print(next_string)
         diff = [i for i in range(len(previous_string)) if previous_string[i] != next_string[i]]
         if previous_string[diff[0]] != 'X':
             diff = list(reversed(diff))
@@ -62,8 +60,6 @@ class ComputerVision:
 
         mask_red2 =  cv2.inRange(hsv, lower_red2, upper_red2)
         hasRed2 = np.sum(mask_red2)
-        """print("red : ", hasRed, hasRed2)
-        print("green: ", hasGreen)"""
         if hasGreen > 500 or hasRed > 500 or hasRed2 > 500:
             return "X" 
         else:
