@@ -44,20 +44,22 @@ class WizardsChess:
     def play_human_vs_ai(self):
         ai_move = None
         player_move = None
-        is_player_turn = self.user_interactor.get_player_starts()
+        #is_player_turn = self.user_interactor.get_player_starts()
+        is_player_turn = True
         while not(self.is_game_finished):
             if(is_player_turn):
                 is_move_performed = False
                 while not(is_move_performed):
                     #we can add move suggestion here, prompt user with question, if yes, call chessAI.getMoveSuggestion and display it
 
-                    self.user_interactor.wait_for_player_confirmation()
+                    #self.user_interactor.wait_for_player_confirmation()
+                    input("press when played")
 
-                    player_move = ComputerVision.get_move_from_player(self.chess_ai.get_board())
+                    player_move = ComputerVision.get_player_move_from_camera(self.chess_ai.get_board())
                     
                     (is_move_performed,is_capture) = self.chess_ai.play_move(player_move)
-                    if(not(is_move_performed)):
-                        self.user_interactor.display_try_again()
+                    #if(not(is_move_performed)):
+                    #    self.user_interactor.display_try_again()
             else:
                 (ai_move,is_capture) = self.chess_ai.play_move_auto()
                 self.perform_move_on_board(str(move),is_capture)
