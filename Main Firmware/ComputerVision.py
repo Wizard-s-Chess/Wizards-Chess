@@ -84,9 +84,7 @@ class ComputerVision:
         img = img[cropYTop:img.shape[0] - cropYBottom, cropXBegin:img.shape[1] - cropXEnd, :]
         img = cv2.rotate(img, cv2.ROTATE_180)
         img = cv2.flip(img, 0)
-        cv2.imshow("output", img)
-        cv2.waitKey(0)
-        cv2.destroyAllWindows()
+        
 
         x_list = []
         y_list = []
@@ -107,9 +105,6 @@ class ComputerVision:
             corners2 = cv2.cornerSubPix(gray, corners, (11, 11), (-1, -1), criteria)
             cv2.drawChessboardCorners(img, (7, 7), corners2, ret)
             cv2.namedWindow("output", cv2.WINDOW_NORMAL)
-            cv2.imshow("output", img)
-            cv2.waitKey(0)
-            cv2.destroyAllWindows()
             with open('square_indices.txt', 'w') as f:
                 for coord in corners2:
                     x_list.append(coord[0][1])
