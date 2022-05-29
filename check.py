@@ -18,7 +18,7 @@ def is_checkmate(board):
 def stalemate_check(board):
 
     return board.is_stalemate()
-
+  
 #Checks if the current position is a stalemate.
 
 def has_insufficient_material(board):

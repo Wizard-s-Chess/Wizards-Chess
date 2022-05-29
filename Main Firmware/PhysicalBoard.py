@@ -4,7 +4,7 @@ import time
 class PhysicalBoard:
     def __init__(self):
         print("init serial")
-        self.serial_port = Serial("COM14", 9600,timeout=None)
+        self.serial_port = Serial("/dev/ttyUSB0", 9600,timeout=None)
 
     def move_motors(self, moves, active_magnet):
         time.sleep(3)

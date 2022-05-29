@@ -10,4 +10,3 @@ if __name__ == "__main__":
     ser = Serial('COM5', 9600)
     launch_game(ser)
     ser.close()
-    
