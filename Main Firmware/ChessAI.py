@@ -27,7 +27,7 @@ class ChessAI:
         self.engine.quit()
         
     def is_move_legal(self,difference):
-        move = self.chess.Move.from_uci(difference)
+        move = chess.Move.from_uci(difference)
         return move in self.board.legal_moves 
 
     def is_checkmate(self):

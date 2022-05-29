@@ -63,7 +63,7 @@ class ComputerVision:
         """print("red : ", hasRed, hasRed2)
         print("green: ", hasGreen)"""
         if hasGreen > 500 or hasRed > 500 or hasRed2 > 500:
-            return "x" 
+            return "X" 
         else:
             return '.'
 
