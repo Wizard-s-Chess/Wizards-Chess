@@ -33,8 +33,10 @@ class ComputerVision:
         return converted_board
 
     def diff(previous_board, next_board):
-        previous_string = ComputerVision.convert_board(previous_board)
-        next_string = ComputerVision.convert_board(next_board)
+        previous_string = ComputerVision.convert_board(previous_board)[::-1]
+        next_string = ComputerVision.convert_board(next_board)[::-1]
+        print("zzz", previous_string)
+        print(next_string)
         diff = [i for i in range(len(previous_string)) if previous_string[i] != next_string[i]]
         if previous_string[diff[0]] != 'X':
             diff = list(reversed(diff))
@@ -80,6 +82,8 @@ class ComputerVision:
         img = cv2.rotate(img, cv2.ROTATE_90_COUNTERCLOCKWISE)
         img = cv2.flip(img,1)
         img = img[cropYTop:img.shape[0] - cropYBottom, cropXBegin:img.shape[1] - cropXEnd, :]
+        img = cv2.rotate(img, cv2.ROTATE_180)
+        img = cv2.flip(img, 0)
         cv2.imshow("output", img)
         cv2.waitKey(0)
         cv2.destroyAllWindows()
