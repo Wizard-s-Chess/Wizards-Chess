@@ -47,9 +47,9 @@ class ComputerVision:
     def get_player_move_from_camera(board):
         ComputerVision.capture()
         played_board = ComputerVision.process_image()
-        print(ComputerVision.convert_board(board))
+        #print(ComputerVision.convert_board(board))
         move_player = ComputerVision.diff(board, played_board)
-        print(move_player)
+        #print(move_player)
         return move_player
 
     def try_range(square,res):
@@ -113,7 +113,7 @@ class ComputerVision:
                     f.write("%d\n" % floor(coord[0][1]))
                     f.write("%d\n" % floor(coord[0][0]))
 
-        print(list(zip(x_list, y_list)))
+        #print(list(zip(x_list, y_list)))
 
         reduce_cell = 2
 
@@ -143,7 +143,7 @@ class ComputerVision:
             res += ComputerVision.try_range(square,res)
             cell_nbr += 1
 
-        print(res)
+        #print(res)
         cell_nbr = 0
         i = 7
         j = 0
@@ -167,7 +167,7 @@ class ComputerVision:
             res += ComputerVision.try_range(square,res)
             cell_nbr += 1
 
-        print(res)
+        #print(res)
         cell_nbr = 0
         i = 14
         j = 0
