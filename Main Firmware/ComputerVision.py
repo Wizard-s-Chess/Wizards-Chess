@@ -47,7 +47,9 @@ class ComputerVision:
         return initial_position + final_position
     #returns the move object from the camera
     def get_player_move_from_camera(board):
-        ComputerVision.capture()
+        # Take 3 capture because of the delay
+        for i in range(3):
+            ComputerVision.capture()
         played_board = ComputerVision.process_image()
         #print(ComputerVision.convert_board(board))
         move_player = ComputerVision.diff(board, played_board)
@@ -69,8 +71,8 @@ class ComputerVision:
         mask_red2 =  cv2.inRange(hsv, lower_red2, upper_red2)
         hasRed2 = np.sum(mask_red2)
 
-        print('red', hasRed, hasRed2)
-        print('green', hasGreen)
+        """print('red', hasRed, hasRed2)
+        print('green', hasGreen)"""
         if hasGreen > 7000 or hasRed > 7000 or hasRed2 > 7000:
             return "X" 
         else:
@@ -95,11 +97,7 @@ class ComputerVision:
         img = cv2.flip(img,1)
         img = cv2.rotate(img, cv2.ROTATE_180)
         img = cv2.flip(img, 0)
-        cv2.namedWindow("output", cv2.WINDOW_NORMAL)
-        cv2.imshow("output", img)
-        cv2.waitKey(0)
-        cv2.destroyAllWindows()
-        
+        cv2.namedWindow("output", cv2.WINDOW_NORMAL)        
 
         x_list = []
         y_list = []
