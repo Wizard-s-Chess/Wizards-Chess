@@ -55,6 +55,10 @@ class ComputerVision:
         return move_player
 
     def try_range(square):
+        """cv2.namedWindow("output", cv2.WINDOW_NORMAL)
+        cv2.imshow("output", square)
+        cv2.waitKey(0)
+        cv2.destroyAllWindows()"""
         hsv = cv2.cvtColor(square, cv2.COLOR_BGR2HSV)
         mask_green = cv2.inRange(hsv, lower_green, upper_green)
         hasGreen = np.sum(mask_green)
@@ -64,26 +68,37 @@ class ComputerVision:
 
         mask_red2 =  cv2.inRange(hsv, lower_red2, upper_red2)
         hasRed2 = np.sum(mask_red2)
-        if hasGreen > 500 or hasRed > 500 or hasRed2 > 500:
+
+        print('red', hasRed, hasRed2)
+        print('green', hasGreen)
+        if hasGreen > 7000 or hasRed > 7000 or hasRed2 > 7000:
             return "X" 
         else:
             return '.'
 
     def process_image():
-        cropXBegin = 125
+        """cropXBegin = 125
         cropXEnd = 50
         cropYTop = 250
-        cropYBottom = 175
+        cropYBottom = 175"""
+        cropXBegin = 103
+        cropXEnd = 165
+        cropYTop = 38
+        cropYBottom = 76
         nline = 7
         ncol = 7
 
         img = cv2.imread("./chess.jpg")
         img = imutils.rotate_bound(img, -2)
+        img = img[cropYTop:img.shape[0] - cropYBottom, cropXBegin:img.shape[1] - cropXEnd, :]
         img = cv2.rotate(img, cv2.ROTATE_90_COUNTERCLOCKWISE)
         img = cv2.flip(img,1)
-        img = img[cropYTop:img.shape[0] - cropYBottom, cropXBegin:img.shape[1] - cropXEnd, :]
         img = cv2.rotate(img, cv2.ROTATE_180)
         img = cv2.flip(img, 0)
+        cv2.namedWindow("output", cv2.WINDOW_NORMAL)
+        cv2.imshow("output", img)
+        cv2.waitKey(0)
+        cv2.destroyAllWindows()
         
 
         x_list = []
@@ -103,8 +118,11 @@ class ComputerVision:
             ret, corners = cv2.findChessboardCorners(gray, (nline, ncol), None)
             criteria = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER, 30, 0.001)
             corners2 = cv2.cornerSubPix(gray, corners, (11, 11), (-1, -1), criteria)
-            cv2.drawChessboardCorners(img, (7, 7), corners2, ret)
+            """cv2.drawChessboardCorners(img, (7, 7), corners2, ret)
             cv2.namedWindow("output", cv2.WINDOW_NORMAL)
+            cv2.imshow("output", img)
+            cv2.waitKey(0)
+            cv2.destroyAllWindows()"""
             with open('square_indices.txt', 'w') as f:
                 for coord in corners2:
                     x_list.append(coord[0][1])
@@ -304,7 +322,7 @@ class ComputerVision:
             square = board[floor(from_x) + reduce_cell : floor(until_x) - reduce_cell, floor(from_y) + reduce_cell : floor(until_y) - reduce_cell, :]
             res += ComputerVision.try_range(square)
             cell_nbr += 1
-        print(res)
+        print('res' , res)
         return res
 
     
