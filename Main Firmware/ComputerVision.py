@@ -25,11 +25,15 @@ class ComputerVision:
         req = requests.get(url)
         with open("chess.jpg", 'wb') as f:
             f.write(req.content)
+            
     def convert_board(board):
         converted_board = str(board).replace("\n", "").replace(" ", "")
-        pieces = "rqkbnrpPQKBNR"
-        for char in pieces:
-            converted_board = converted_board.replace(char,"X")
+        blue_pieces = "rqkbnp"
+        red_pieces = "PQKBNR"
+        for char in red_pieces:
+            converted_board = converted_board.replace(char,"R")
+        for char in blue_pieces:
+            converted_board = converted_board.replace(char,"B")
         return converted_board
 
     def diff(previous_board, next_board):
@@ -39,7 +43,7 @@ class ComputerVision:
         print(previous_string)
         print(next_string)
 
-        if previous_string[diff[0]] != 'X':
+        if previous_string[diff[0]] == '.':
             diff = list(reversed(diff))
         print(diff)
         initial_position = str(chr((diff[0]%8) + 97) + str(abs(diff[0]//8 - 8)))
