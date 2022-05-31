@@ -28,12 +28,12 @@ class ComputerVision:
             
     def convert_board(board):
         converted_board = str(board).replace("\n", "").replace(" ", "")
-        blue_pieces = "rqkbnp"
+        green_pieces = "rqkbnp"
         red_pieces = "PQKBNR"
         for char in red_pieces:
             converted_board = converted_board.replace(char,"R")
-        for char in blue_pieces:
-            converted_board = converted_board.replace(char,"B")
+        for char in green_pieces:
+            converted_board = converted_board.replace(char,"G")
         return converted_board
 
     def diff(previous_board, next_board):
@@ -77,8 +77,10 @@ class ComputerVision:
 
         """print('red', hasRed, hasRed2)
         print('green', hasGreen)"""
-        if hasGreen > 7000 or hasRed > 7000 or hasRed2 > 7000:
-            return "X" 
+        if hasRed > 7000 or hasRed2 > 7000:
+            return 'R' 
+        elif hasGreen > 7000:
+            return 'G'
         else:
             return '.'
 
