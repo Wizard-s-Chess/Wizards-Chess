@@ -16,7 +16,7 @@ class UserInteractor:
 
     def choose_ai_level(self):
         options = [["Pick level: 1-20", "Level " + str(i + 1)] for i in range(20)]
-        return choose_between(options)
+        return self.choose_between(options)
     
     def get_player_starts(self):
         options = [("Choose color",">White     Black"),("Choose color"," White    >Black")]
