@@ -14,8 +14,8 @@ upper_red = np.array([10, 255, 255])
 lower_red2 = np.array([170, 70, 70])
 upper_red2 = np.array([180, 255, 255])
 
-lower_blue = np.array([115, 70, 70])
-upper_blue = np.array([125, 255, 255])
+lower_green = np.array([50, 70, 70])
+upper_green = np.array([70, 255, 255])
 
 """lower_red = np.array([0, 100, 100])
 upper_red = np.array([10, 255, 255])"""
@@ -25,11 +25,15 @@ class ComputerVision:
         req = requests.get(url)
         with open("chess.jpg", 'wb') as f:
             f.write(req.content)
+            
     def convert_board(board):
         converted_board = str(board).replace("\n", "").replace(" ", "")
-        pieces = "rqkbnrpPQKBNR"
-        for char in pieces:
-            converted_board = converted_board.replace(char,"X")
+        green_pieces = "rqkbnp"
+        red_pieces = "PQKBNR"
+        for char in red_pieces:
+            converted_board = converted_board.replace(char,"R")
+        for char in green_pieces:
+            converted_board = converted_board.replace(char,"G")
         return converted_board
 
     def diff(previous_board, next_board):
@@ -39,7 +43,7 @@ class ComputerVision:
         print(previous_string)
         print(next_string)
 
-        if previous_string[diff[0]] != 'X':
+        if previous_string[diff[0]] == '.':
             diff = list(reversed(diff))
         print(diff)
         initial_position = str(chr((diff[0]%8) + 97) + str(abs(diff[0]//8 - 8)))
@@ -57,13 +61,13 @@ class ComputerVision:
         return move_player
 
     def try_range(square):
-        cv2.namedWindow("output", cv2.WINDOW_NORMAL)
+        """cv2.namedWindow("output", cv2.WINDOW_NORMAL)
         cv2.imshow("output", square)
         cv2.waitKey(0)
-        cv2.destroyAllWindows()
+        cv2.destroyAllWindows()"""
         hsv = cv2.cvtColor(square, cv2.COLOR_BGR2HSV)
-        mask_blue = cv2.inRange(hsv, lower_blue, upper_blue)
-        hasBlue = np.sum(mask_blue)
+        mask_green = cv2.inRange(hsv, lower_green, upper_green)
+        hasGreen = np.sum(mask_green)
 
         mask_red =  cv2.inRange(hsv, lower_red, upper_red)
         hasRed = np.sum(mask_red)
@@ -71,12 +75,12 @@ class ComputerVision:
         mask_red2 =  cv2.inRange(hsv, lower_red2, upper_red2)
         hasRed2 = np.sum(mask_red2)
 
-        print('red', hasRed, hasRed2)
-        print('blue', hasBlue)
-        if hasBlue > 7000: 
-            return 'B' 
-        elif hasRed > 7000 or hasRed2 > 7000:
-            return 'R'
+        """print('red', hasRed, hasRed2)
+        print('green', hasGreen)"""
+        if hasRed > 7000 or hasRed2 > 7000:
+            return 'R' 
+        elif hasGreen > 7000:
+            return 'G'
         else:
             return '.'
 
@@ -87,17 +91,17 @@ class ComputerVision:
         cropYBottom = 175"""
         cropXBegin = 105
         cropXEnd = 165
-        cropYTop = 53
-        cropYBottom = 63
+        cropYTop = 55
+        cropYBottom = 61
         nline = 7
         ncol = 7
 
         img = cv2.imread("./chess.jpg")
         img = imutils.rotate_bound(img, -2)
         img = img[cropYTop:img.shape[0] - cropYBottom, cropXBegin:img.shape[1] - cropXEnd, :]
-        cv2.namedWindow("output", cv2.WINDOW_NORMAL)        
+        """cv2.namedWindow("output", cv2.WINDOW_NORMAL)        
         cv2.imshow("output", img)
-        cv2.waitKey(0)
+        cv2.waitKey(0)"""
         cv2.destroyAllWindows()
         img = cv2.rotate(img, cv2.ROTATE_90_COUNTERCLOCKWISE)
         img = cv2.flip(img,1)
