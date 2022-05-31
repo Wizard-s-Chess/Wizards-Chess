@@ -3,6 +3,7 @@ if not __debug__:
 import time
 
 def buttons_init():
+    print(__debug__)
     if not __debug__:
         GPIO.setwarnings(False)
         GPIO.setmode(GPIO.BCM)
