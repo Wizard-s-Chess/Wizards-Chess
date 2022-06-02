@@ -24,12 +24,17 @@ class UserInteractor:
         return res == 1
     
     def wait_for_player_confirmation(self):
-        display("You turn : press", "OK to confirm!")
-        while not button_pressed()[1]:
+        options = [["Your turn: ", ">Play      Reset"], ["Your turn: ", "Play      >Reset"]]
+        choice = self.choose_between(options)
+        reset = False
+        if choice == 1:
+            reset = True
             pass
-        display("Great! Please", "wait for the AI")
-        time.sleep(0.5)
-        display("","")
+        else:
+            display("Great! Please", "wait for the AI")
+            time.sleep(0.5)
+            display("","")
+        return reset
     
     def display_try_again(self):
         display("Move not legal","choose other move")

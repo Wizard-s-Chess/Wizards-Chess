@@ -71,6 +71,10 @@ void loop() {
       restMagnet();
       Serial.write("f");
     }
+    if(incomingByte == 'r'){
+      restMagnet();
+      goHome();
+    }
   }
 }
 void restMagnet(){

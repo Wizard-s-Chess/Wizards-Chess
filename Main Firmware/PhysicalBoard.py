@@ -17,4 +17,6 @@ class PhysicalBoard:
         #wait for confirmation from arduino that move was performed
         serialString = self.serial_port.read(1)
         
+    def reset_motors(self):
+        self.serial_port.write(bytes('r', 'ascii'))
 

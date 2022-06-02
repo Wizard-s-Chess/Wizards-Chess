@@ -1,4 +1,5 @@
 
+from cgitb import reset
 import ChessboardGraph
 import PhysicalBoard
 import UserInteractor
@@ -19,6 +20,7 @@ class WizardsChess:
         self.is_game_finished = False
         player_mode = self.user_interactor.get_game_mode()
         level = self.user_interactor.choose_ai_level()
+        self.chess_ai.engine.configure({"Skill Level": level + 1})
         if player_mode:
             self.play_human_vs_ai()
         else:
@@ -52,7 +54,10 @@ class WizardsChess:
                 while not(is_move_performed):
                     #we can add move suggestion here, prompt user with question, if yes, call chessAI.getMoveSuggestion and display it
 
-                    self.user_interactor.wait_for_player_confirmation()
+                    reset = self.user_interactor.wait_for_player_confirmation()
+                    if reset:
+                        self.physical_board.reset_motors()
+                        self.chess_ai.reset()
                     #input("press when played")
 
                     player_move = ComputerVision.get_player_move_from_camera(self.chess_ai.get_board())
