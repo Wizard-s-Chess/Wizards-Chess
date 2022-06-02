@@ -13,7 +13,8 @@ class PathGenerator:
         #color_map[get_id(source)] = 'red'
         #color_map[get_id(sink)] = 'yellow'
         nx.draw_networkx(G, pos=pos, node_color = color_map)
-
+    def reset(self):
+        self.last_position = (0,0)
     
     def draw_shortest_path(self,G, path, path_edges):
         pos = dict( (n, n) for n in G.nodes() )

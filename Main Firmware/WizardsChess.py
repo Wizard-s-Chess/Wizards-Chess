@@ -100,6 +100,7 @@ class WizardsChess:
         self.physical_board.reset_motors()
         self.chess_ai.reset()
         self.is_game_finished = False
+        self.path_generator.reset()
         
 if __name__ == "__main__":
     instance = WizardsChess()
