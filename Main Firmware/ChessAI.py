@@ -61,6 +61,6 @@ class ChessAI:
     def is_game_over(self):
         return self.board.is_game_over()
     def reset(self):
-        return self.board.reset_board()
+        self.board.reset_board()
     def get_board(self):
         return self.board

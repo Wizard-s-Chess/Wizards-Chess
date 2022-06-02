@@ -53,11 +53,9 @@ class WizardsChess:
                 is_move_performed = False
                 while not(is_move_performed):
                     #we can add move suggestion here, prompt user with question, if yes, call chessAI.getMoveSuggestion and display it
-
                     reset = self.user_interactor.wait_for_player_confirmation()
                     if reset:
-                        self.physical_board.reset_motors()
-                        self.chess_ai.reset()
+                        return
                     #input("press when played")
                     else :
                         player_move = ComputerVision.get_player_move_from_camera(self.chess_ai.get_board())
@@ -98,10 +96,16 @@ class WizardsChess:
         path = self.path_generator.get_path_move(move)
         print("taking to",move[2:])
         self.physical_board.move_motors(path,active_magnet=True)
-
+    def reset(self):
+        self.physical_board.reset_motors()
+        self.chess_ai.reset()
+        self.is_game_finished = False
+        
 if __name__ == "__main__":
     instance = WizardsChess()
-    instance.start()
+    while True:
+        instance.start()
+        instance.reset()
 
         
 

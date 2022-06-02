@@ -89,19 +89,18 @@ class ComputerVision:
         cropXEnd = 50
         cropYTop = 250
         cropYBottom = 175"""
-        cropXBegin = 105
-        cropXEnd = 165
-        cropYTop = 55
-        cropYBottom = 61
+        cropXBegin = 140
+        cropXEnd = 125
+        cropYTop = 40
+        cropYBottom = 75
         nline = 7
         ncol = 7
 
         img = cv2.imread("./chess.jpg")
         img = imutils.rotate_bound(img, -2)
-        img = img[cropYTop:img.shape[0] - cropYBottom, cropXBegin:img.shape[1] - cropXEnd, :]
-        """cv2.namedWindow("output", cv2.WINDOW_NORMAL)        
+        img = img[cropYTop:img.shape[0] - cropYBottom, cropXBegin:img.shape[1] - cropXEnd, :]     
         cv2.imshow("output", img)
-        cv2.waitKey(0)"""
+        cv2.waitKey(0)
         cv2.destroyAllWindows()
         img = cv2.rotate(img, cv2.ROTATE_90_COUNTERCLOCKWISE)
         img = cv2.flip(img,1)
