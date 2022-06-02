@@ -59,12 +59,12 @@ class WizardsChess:
                         self.physical_board.reset_motors()
                         self.chess_ai.reset()
                     #input("press when played")
-
-                    player_move = ComputerVision.get_player_move_from_camera(self.chess_ai.get_board())
-                    (is_move_performed,is_capture) = self.chess_ai.play_move(player_move)
-                    print(player_move,is_move_performed)
-                    if(not(is_move_performed)):
-                        self.user_interactor.display_try_again()
+                    else :
+                        player_move = ComputerVision.get_player_move_from_camera(self.chess_ai.get_board())
+                        (is_move_performed,is_capture) = self.chess_ai.play_move(player_move)
+                        print(player_move,is_move_performed)
+                        if(not(is_move_performed)):
+                            self.user_interactor.display_try_again()
             else:
                 (ai_move,is_capture) = self.chess_ai.play_move_auto()
                 self.perform_move_on_board(str(ai_move),is_capture)
