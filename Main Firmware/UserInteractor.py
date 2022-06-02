@@ -28,6 +28,7 @@ class UserInteractor:
         choice = self.choose_between(options)
         reset = False
         if choice == 1:
+            display("Put pieces to", "initial position")
             reset = True
             pass
         else:
