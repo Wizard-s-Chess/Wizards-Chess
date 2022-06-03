@@ -1,4 +1,4 @@
-# Wizards-Chess ♟️
+# Wizard's Chess ♟️⚡
 
 # Automated Chess Board Report
 
@@ -6,42 +6,38 @@
 
 ### Description
 Our idea is to allow chess players to play against a computer
- on a physical board. The pieces 
- are moved from underneath the board 
- using a magnet. The goal of the robot is to recognize the player moves 
- through computer vision. This will be explained deeper in the next 
- sections. The motivation behind the idea is to surpass ourselves and 
- face a robot implemented using Artificial intelligence that can be more 
- competitive than face a real human. We will implement three different 
- levels: Beginner, Intermediate, Expert.
- 
-### Components and supplies 
+ while keeping the charm of playing on a physical board.
+ The player makes his move on the board and then confirms it.The computer then recognizes the movement and plays its turn,
+ There's also a mode where you can watch two AIs play against each other.
+ ![building the case image 1](/pictures/main.jpg)
+
+### Components and supplies
 
  - Arduino UNO
- - Rasberry pi 3 
+ - Rasberry pi 3
  - Esp 32 cam
+ - A usb to serial adapter
  - Motor driver
  - Stepper motor 2x
- - Stepper driver 
+ - Stepper driver
  - electromagnet
  - 12V power supply
  - Wooden board 59cm x 59,7cm
  - Wooden board 62xm x12 cm 4x
  - Plexiglas board 59cm x 59,7cm
- - Linear Bearing Block 4x 
- - Wires (male-male, male-female, female-female)
+ - Linear Bearing Block 4x
  - Screen LCD
  - Screws
  - Wooden support esp32
- - 3d print of some pieces (see .stl files) 
- 
+ - 3d print of some pieces (see .stl files)
+
 ## General working
 
-As said in the introduction the chessboard is designed to move the 
+As said in the introduction the chessboard is designed to move the
 adversary pieces on the chessboard by themself.
-To do so, the chess pieces will be moved by an electro 
+To do so, the chess pieces will be moved by an electro
 magnet which is placed below the play board.
-To move the electromagnet, linear bearings and the stepper motors 
+To move the electromagnet, linear bearings and the stepper motors
 are placed under the chess board as shown on this schema :
 
 ![general working image 1](/pictures/gen_work1.PNG)
@@ -64,11 +60,11 @@ The case is composed of the following material :
  - 10 3d printed T shaped piece to lay the plexiglas on it
  - 4 wooden wall of dimensions 62 x cm x 12 cm x 1,5cm
  - 4 3d printed corner inside pieces to lay the plexiglas on it
- - 8 3d printed corners outside pieces to maintain the wooden walls 
- - middle size screws
- - small sized crews
- 
-First print the 10 T shaped, the 4 inside corners and the 8 outside corners. Then, the wooden and plexiglas pieces 
+ - 8 3d printed corners outside pieces to maintain the wooden walls
+ - middle size screws (30 mm M3 screws)
+ - small sized crews (12 mm M3 screw)
+
+First print the 10 T shaped, the 4 inside corners and the 8 outside corners. Then, the wooden and plexiglas pieces
 should be cut at the right size.
 
 1. To fix the walls here is the following steps:
@@ -85,6 +81,7 @@ should be cut at the right size.
 *The top (left) and side (right) view*
 
 ## Inserting the linear bearings, threaded shafts and stepper motor
+![building the case image 1](/pictures/3d_design.PNG)
 *Note : This part can be done before to put the plate inside the box.*
 
 This part needs the following material :
@@ -96,8 +93,8 @@ This part needs the following material :
  - 1 wooden parts of 21,6 cm x 2,5 cm x 3 mm
  - 1 wooden parts of 22,4 cm x 2,5 cm x 3 mm
  - 4 stands for the rodes
- - 2 stands for the nuts 
- - 3D printed parts : 
+ - 2 stands for the nuts
+ - 3D printed parts :
     - Fixation for inferior motor
     - Fixation for superior motor
     - Support for the inferior nut
@@ -106,7 +103,7 @@ This part needs the following material :
     - Support facing the superior stepper motor (laying on the opposite rode)
  - Screws
 
-For this one the only to do is to print the pieces and then to screw on the plate the 6 stands 
+For this one the only to do is to print the pieces and then to screw on the plate the 6 stands
 On the following scheme here are the different distances to respect for screwing.
 
 |   | Measures |
@@ -120,11 +117,10 @@ On the following scheme here are the different distances to respect for screwing
 
 ### Wedges
 
-In order to have everything at the right height, it is important to put some wedge between the bottom plate of the
- board and the rods and shafts holders. This is how it looks like :
- 
+In order to have everything at the right height, it is important to put some wedge between the bottom plate of the board and the rods and shafts holders. This is how it looks like :
+
  ![building the case image 2](/pictures/insert_bearing2.PNG)
- 
+
  ![building the case image 3](/pictures/insert_bearing3.PNG)
 
 ## Camera box and support
@@ -134,7 +130,7 @@ This part is quite easy and needs very few material :
  - 1 3D printed case for ESP32 cam
  - 2 3D angles for wooden stick
  - 3 wooden sticks of size 65 cm x 1 cm x 1 cm
- - 2 3D printed support 
+ - 2 3D printed support
  - small screws
 
 As this part is very easy, only a scheme will be provided.
@@ -154,7 +150,7 @@ In black : the support
 In order to be attracted by the electromagnet, we will put screws inside the chess pieces.
  - 3D printed chess pieces
  - 16 medium screws
- 
+
 Once everything is printed, it is just needed to screw on the bottom of each adversary’s piece.
 
 *Note : If, due to the structure made by the 3D printer it is impossible to put in the screws, it also possible to gently redrill the pieces beforehand.*
@@ -177,7 +173,7 @@ For this part we will the following material:
 
 ### Part 1 : fix the switches
 To determine  and calibrate the position of the linear bearings on the axises 2 switches must be placed.
-For the first switch (on the superior axis) it is placed directly on the 3D printed part that hold the superior stepper motor. 
+For the first switch (on the superior axis) it is placed directly on the 3D printed part that hold the superior stepper motor.
 
 ![electronic image 1](/pictures/electronic1.PNG)
 
@@ -187,42 +183,43 @@ It is placed 102mm away from the wall of the chess board :
 ![electronic image 2](/pictures/electronic2.PNG)
 
 ### Part 2 : Wiring
-To do this part please follow the schematic just below : it is recommended to start by soldering the resistances
- and then do the rest.
- 
+To do this part please follow the schematic just below:
+
 ![electronic image 3 &](/pictures/electronic_schema.PNG)
 
 ## Raspberry PI and Arduino setup
 *This step assumes that Linux, python 3 and git are already installed on the Raspberry PI.*
 
-### Part 1 : Raspberry PI setup 
+### Part 1 : Raspberry PI setup
 
-Download the git repo
- 1.Create a folder on the raspberry PI.
- 2. Run the following command to download the repo:
+Clone the git repo:
+ 1. Run the following command to download the repo:
 `git clone https://github.com/Wizard-s-Chess/Wizards-Chess.git`
- 
-Install the packages
+
+Install the packages:
+1. cd in the directory of the downloaded repo
 1. Run the following command to install all the packages
 `pip install -r requirements.txt`
 
 ### Part 2 : Arduino setup
-1. Download the arduino code on the Motors folder of the git repo (on the raspberry PI for instance) and flash the
- arduino with it.
-2. Connect (if not already done) with the an USB cable the raspberry PI to the arduino with the USB cable.
-3. Make sure that the arduino is connected to the COM5 serial port : this could be via the settings panel.
+1. Upload the motors sketch (found in the directory /arduino/motors) on the arduino via the arduino IDE.
 
 ### Part 3 : ESP32 Cam setup
-1. Download the code located on the ESP32 folder of the git repo.
-2. Flash the ESP32 Cam (with the same software as the raspberry PI).
+1. Connect the ESP32 Cam to the laptop via the USB to Serial adapter
+2. Flash the ESP32 Cam (with the same software as the arduino).
 
 ### Part 4 : Connect the raspberry PI to the ESP32 cam wifi
 Once the ESP32 Cam is set up a new wifi is available to connect on. Connect to this wifi on the raspberry PI.
 
+### Part 5 : Connect the raspberry PI to arduino
+You can connect the raspberry pi to the arduino either via a USB cable or directly the the pi's uart ports in the GPIO. Either way, you have to change the location of the chosen serial port in the 'PhysicalBoard.py' file.
+
 ## Run the project
 
-Once everything is done until now. The program can be run via from the command line (the command line must be in the right folder) :
-python `main.py`
+Once everything is done, the program can be run via from the command line.
+To launch the main program on the raspberry pi, you have to get in the "Main Firmware" directory and run
+
+`python -O WizardsChess.py`
 
 ## Members :
 
