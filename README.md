@@ -186,7 +186,7 @@ It is placed 102mm away from the wall of the chess board :
 To do this part please follow the schematic just below : it is recommended to start by soldering the resistances
  and then do the rest.
  
-![electronic image 3](/pictures/electronic3.PNG)
+![electronic image 3 &](/pictures/electronic_schema.PNG)
 
 ## Raspberry PI and Arduino setup
 *This step assumes that Linux, python 3 and git are already installed on the Raspberry PI.*
