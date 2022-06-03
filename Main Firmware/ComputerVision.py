@@ -42,13 +42,15 @@ class ComputerVision:
         diff = [i for i in range(len(previous_string)) if previous_string[i] != next_string[i]]
         print(previous_string)
         print(next_string)
-
+        if (len(diff) != 2):
+            return ""
         if previous_string[diff[0]] == '.':
             diff = list(reversed(diff))
         print(diff)
         initial_position = str(chr((diff[0]%8) + 97) + str(abs(diff[0]//8 - 8)))
         final_position = str(chr((diff[1]%8) + 97) + str(abs(diff[1]//8 - 8)))
         return initial_position + final_position
+        
     #returns the move object from the camera
     def get_player_move_from_camera(board):
         # Take 3 capture because of the delay

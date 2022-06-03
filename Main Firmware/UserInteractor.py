@@ -34,6 +34,9 @@ class UserInteractor:
         else:
             display("Great! Please", "wait for the AI")
         return reset
+
+    def display_no_move(self):
+        display("No move done","try again!")
     
     def display_try_again(self):
         display("Move not legal","choose other move")
