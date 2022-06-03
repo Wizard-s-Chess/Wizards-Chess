@@ -93,7 +93,8 @@ This part needs the following material :
  - 4 linear bearings
  - 2 stepper motors
  - 2 nuts for the threaded shafts
- - 2 wooden parts of x mm x x mm
+ - 1 wooden parts of 21,6 cm x 2,5 cm x 3 mm
+ - 1 wooden parts of 22,4 cm x 2,5 cm x 3 mm
  - 4 stands for the rodes
  - 2 stands for the nuts 
  - 3D printed parts : 
@@ -132,8 +133,7 @@ This part is quite easy and needs very few material :
  - 1 ESP32 cam
  - 1 3D printed case for ESP32 cam
  - 2 3D angles for wooden stick
- - 2 wooden sticks of size 
- - 1 wooden stick of size 
+ - 3 wooden sticks of size 65 cm x 1 cm x 1 cm
  - 2 3D printed support 
  - small screws
 
