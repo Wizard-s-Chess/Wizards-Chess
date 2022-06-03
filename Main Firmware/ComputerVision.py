@@ -50,7 +50,7 @@ class ComputerVision:
         initial_position = str(chr((diff[0]%8) + 97) + str(abs(diff[0]//8 - 8)))
         final_position = str(chr((diff[1]%8) + 97) + str(abs(diff[1]//8 - 8)))
         return initial_position + final_position
-        
+
     #returns the move object from the camera
     def get_player_move_from_camera(board):
         # Take 3 capture because of the delay
@@ -100,10 +100,7 @@ class ComputerVision:
 
         img = cv2.imread("./chess.jpg")
         img = imutils.rotate_bound(img, -2)
-        img = img[cropYTop:img.shape[0] - cropYBottom, cropXBegin:img.shape[1] - cropXEnd, :]     
-        cv2.imshow("output", img)
-        cv2.waitKey(0)
-        cv2.destroyAllWindows()
+        img = img[cropYTop:img.shape[0] - cropYBottom, cropXBegin:img.shape[1] - cropXEnd, :]
         img = cv2.rotate(img, cv2.ROTATE_90_COUNTERCLOCKWISE)
         img = cv2.flip(img,1)
         img = cv2.rotate(img, cv2.ROTATE_180)
