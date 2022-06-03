@@ -80,7 +80,7 @@ should be cut at the right size.
 7. Here is the schema the shows the layout of all those pieces :
 
 
-![building the case image 1 &](/pictures/build_case1.PNG)
+![building the case image 1](/pictures/build_case1.PNG)
 
 *The top (left) and side (right) view*
 
