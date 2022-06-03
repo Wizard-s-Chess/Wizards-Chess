@@ -91,10 +91,10 @@ class ComputerVision:
         cropXEnd = 50
         cropYTop = 250
         cropYBottom = 175"""
-        cropXBegin = 140
-        cropXEnd = 125
-        cropYTop = 40
-        cropYBottom = 75
+        cropXBegin = 139
+        cropXEnd = 128
+        cropYTop = 37
+        cropYBottom = 79
         nline = 7
         ncol = 7
 
