@@ -63,16 +63,20 @@ class WizardsChess:
                         if (player_move == ""):
                             self.user_interactor.display_no_move()
                         else:
+<<<<<<< HEAD
                             (is_move_performed,is_capture) = self.chess_ai.play_move(player_move)
                             print(player_move,is_move_performed)
                             if(not(is_move_performed)):
                                 self.user_interactor.display_try_again()
                             else:
                                 self.user_interactor.display_move(str(player_move))
+=======
+                            self.user_interactor.display("You played",str(player_move))
+>>>>>>> 1da608b10e995ed512aa90a028e06d008e7968c7
             else:
                 (ai_move,is_capture) = self.chess_ai.play_move_auto()
+                self.user_interactor.display("AI Played",str(ai_move))
                 self.perform_move_on_board(str(ai_move),is_capture)
-                self.user_interactor.display_move(str(ai_move))
             is_player_turn = not is_player_turn
             self.is_game_finished = self.chess_ai.is_game_over() 
         
@@ -80,8 +84,10 @@ class WizardsChess:
         
         #else see who won
         if(is_player_turn): #last move was done by AI
+            self.user_interactor.display("AI won!","")
             print("AI won")
         else:
+            self.user_interactor.display("You won!","")
             print("Player won")
 
     def perform_move_on_board(self,move,is_capture):
