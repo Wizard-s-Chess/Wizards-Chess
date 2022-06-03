@@ -33,14 +33,10 @@ class UserInteractor:
             pass
         else:
             display("Great! Please", "wait for the AI")
-            time.sleep(0.5)
-            display("","")
         return reset
     
     def display_try_again(self):
         display("Move not legal","choose other move")
-        time.sleep(2)
-        display("","")
     
     def choose_between(self,options):
         i = 0
@@ -63,4 +59,8 @@ class UserInteractor:
             display("You won!","Well played :)")
         else:
             display("You lost!",":(")
+    def display_move(self, move):
+        display("move played:",move)
+    def display(self, line1, line2):
+        display(line1,line2)
 

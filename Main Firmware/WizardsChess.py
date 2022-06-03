@@ -63,9 +63,12 @@ class WizardsChess:
                         print(player_move,is_move_performed)
                         if(not(is_move_performed)):
                             self.user_interactor.display_try_again()
+                        else:
+                            self.user_interactor.display_move(str(player_move))
             else:
                 (ai_move,is_capture) = self.chess_ai.play_move_auto()
                 self.perform_move_on_board(str(ai_move),is_capture)
+                self.user_interactor.display_move(str(ai_move))
             is_player_turn = not is_player_turn
             self.is_game_finished = self.chess_ai.is_game_over() 
         
