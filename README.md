@@ -121,6 +121,10 @@ On the following scheme here are the different distances to respect for screwing
 
 In order to have everything at the right height, it is important to put some wedge between the bottom plate of the
  board and the rods and shafts holders. This is how it looks like :
+ 
+ ![building the case image 2](/pictures/build_case2.PNG)
+ 
+ ![building the case image 3](/pictures/build_case3.PNG)
 
 ## Camera box and support
 
