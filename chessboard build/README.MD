@@ -79,6 +79,7 @@ should be cut at the right size.
 
 
 ![building the case image 1 &](/chessboard%20build/pictures/build_case1.PNG)
+
 *The top (left) and side (right) view*
 
 ##Inserting the linear bearings, threaded shafts and stepper motor
@@ -121,4 +122,102 @@ In order to have everything at the right height, it is important to put some wed
 
 ![building the case image 2 &](/chessboard%20build/pictures/build_case2.PNG)
 ![building the case image 3 &](/chessboard%20build/pictures/build_case3.PNG)
+
+##Camera box and support
+
+This part is quite easy and needs very few material :
+ - 1 ESP32 cam
+ - 1 3D printed case for ESP32 cam
+ - 2 3D angles for wooden stick
+ - 2 wooden sticks of size 
+ - 1 wooden stick of size 
+ - 2 3D printed support 
+ - small screws
+
+As this part is very easy, only a scheme will be provided.
+Please, do not forget to glue the stick inside the angles.
+
+![camera box image 1 &](/chessboard%20build/pictures/cam_box1.PNG)
+
+*The 2 side views*
+
+In green : the angles
+
+In blue : the case
+
+In black : the support
+
+##Chess pieces
+In order to be attracted by the electromagnet, we will put screws inside the chess pieces.
+ - 3D printed chess pieces
+ - 16 medium screws
+ 
+Once everything is printed, it is just needed to screw on the bottom of each adversary’s piece.
+
+*Note : If, due to the structure made by the 3D printer it is impossible to put in the screws, it also possible to gently redrill the pieces beforehand.*
+
+##Electronic
+
+For this part we will the following material:
+ - 1 arduino
+ - 1 raspberry pi 3B
+ - 1 VNH2SP30 Motor Driver
+ - 1 LCD screen
+ - 2 button switches
+ - 2 switches
+ - 1 lm2596 regulator
+ - 2 a4988 stepper motor driver
+ - 3 resistances of 220 Ω
+ - 1 alimentation 12v
+ - different pieces of wiring
+
+
+###Part 1 : fix the switches
+To determine  and calibrate the position of the linear bearings on the axises 2 switches must be placed.
+For the first switch (on the superior axis) it is placed directly on the 3D printed part that hold the superior stepper motor. 
+
+![electronic image 1 &](/chessboard%20build/pictures/electronic1.PNG)
+
+For the second switch it is placed on the wooden board, next to the inferior stepper motor.
+It is placed 102mm away from the wall of the chess board :
+
+![electronic image 2 &](/chessboard%20build/pictures/electronic2.PNG)
+
+###Part 2 : Wiring
+To do this part please follow the schematic just below : it is recommended to start by soldering the resistances
+ and then do the rest.
+ 
+![electronic image 3 &](/chessboard%20build/pictures/electronic3.PNG)
+
+##Raspberry PI and Arduino setup
+*This step assumes that Linux, python 3 and git are already installed on the Raspberry PI.*
+
+###Part 1 : Raspberry PI setup 
+
+Download the git repo
+ 1.Create a folder on the raspberry PI.
+ 2. Run the following command to download the repo:
+`git clone https://github.com/Wizard-s-Chess/Wizards-Chess.git`
+ 
+Install the packages
+1. Run the following command to install all the packages
+`pip install -r requirements.txt`
+
+###Part 2 : Arduino setup
+1. Download the arduino code on the Motors folder of the git repo (on the raspberry PI for instance) and flash the
+ arduino with it.
+2. Connect (if not already done) with the an USB cable the raspberry PI to the arduino with the USB cable.
+3. Make sure that the arduino is connected to the COM5 serial port : this could be via the settings panel.
+
+###Part 3 : ESP32 Cam setup
+1. Download the code located on the ESP32 folder of the git repo.
+2. Flash the ESP32 Cam (with the same software as the raspberry PI).
+
+###Part 4 : Connect the raspberry PI to the ESP32 cam wifi
+Once the ESP32 Cam is set up a new wifi is available to connect on. Connect to this wifi on the raspberry PI.
+
+##Run the project
+
+Once everything is done until now. The program can be run via from the command line (the command line must be in the right folder) :
+python `main.py`
 
