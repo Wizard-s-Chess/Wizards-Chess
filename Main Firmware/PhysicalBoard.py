@@ -7,7 +7,6 @@ class PhysicalBoard:
         self.serial_port = Serial("/dev/ttyUSB0", 9600,timeout=None)
 
     def move_motors(self, moves, active_magnet):
-        time.sleep(3)
         if active_magnet:
             self.serial_port.write(bytes('m', 'ascii'))
         else:
