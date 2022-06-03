@@ -122,9 +122,6 @@ On the following scheme here are the different distances to respect for screwing
 In order to have everything at the right height, it is important to put some wedge between the bottom plate of the
  board and the rods and shafts holders. This is how it looks like :
 
-![building the case image 2 &](/pictures/build_case2.PNG)
-![building the case image 3 &](/pictures/build_case3.PNG)
-
 ## Camera box and support
 
 This part is quite easy and needs very few material :
@@ -139,7 +136,7 @@ This part is quite easy and needs very few material :
 As this part is very easy, only a scheme will be provided.
 Please, do not forget to glue the stick inside the angles.
 
-![camera box image 1 &](/pictures/cam_box1.PNG)
+![camera box image 1](/pictures/cam_box1.PNG)
 
 *The 2 side views*
 
@@ -178,18 +175,18 @@ For this part we will the following material:
 To determine  and calibrate the position of the linear bearings on the axises 2 switches must be placed.
 For the first switch (on the superior axis) it is placed directly on the 3D printed part that hold the superior stepper motor. 
 
-![electronic image 1 &](/pictures/electronic1.PNG)
+![electronic image 1](/pictures/electronic1.PNG)
 
 For the second switch it is placed on the wooden board, next to the inferior stepper motor.
 It is placed 102mm away from the wall of the chess board :
 
-![electronic image 2 &](/pictures/electronic2.PNG)
+![electronic image 2](/pictures/electronic2.PNG)
 
 ### Part 2 : Wiring
 To do this part please follow the schematic just below : it is recommended to start by soldering the resistances
  and then do the rest.
  
-![electronic image 3 &](/pictures/electronic3.PNG)
+![electronic image 3](/pictures/electronic3.PNG)
 
 ## Raspberry PI and Arduino setup
 *This step assumes that Linux, python 3 and git are already installed on the Raspberry PI.*
