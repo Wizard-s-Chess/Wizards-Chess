@@ -19,6 +19,7 @@ class WizardsChess:
     def start(self):
         self.is_game_finished = False
         player_mode = self.user_interactor.get_game_mode()
+        #player_mode = True
         level = self.user_interactor.choose_ai_level()
         self.chess_ai.engine.configure({"Skill Level": level + 1})
         if player_mode:
@@ -35,19 +36,19 @@ class WizardsChess:
                 (ai_1_move,is_capture) = self.chess_ai.play_move_auto()
                 print("ai 1 ",ai_1_move)
                 self.perform_move_on_board(str(ai_1_move),is_capture)
-                print(self.chess_ai.get_board())
+                #print(self.chess_ai.get_board())
             else:
                 (ai_2_move,is_capture) = self.chess_ai.play_move_auto()
                 print("ai 2 ",ai_2_move)
-                #self.perform_move_on_board(str(ai_2_move),is_capture)
+                self.perform_move_on_board(str(ai_2_move),is_capture)
             is_ai_1_turn = not is_ai_1_turn
             self.is_game_finished = self.chess_ai.is_game_over()
 
     def play_human_vs_ai(self):
         ai_move = None
         player_move = None
-        is_player_turn = self.user_interactor.get_player_starts()
-        #is_player_turn = False
+        #is_player_turn = self.user_interactor.get_player_starts()
+        is_player_turn = False
         while not(self.is_game_finished):
             if(is_player_turn):
                 is_move_performed = False
