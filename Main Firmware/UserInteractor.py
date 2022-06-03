@@ -32,14 +32,18 @@ class UserInteractor:
             reset = True
             pass
         else:
-            display("Great! Please", "wait for the AI")
+            display("Okay, processing", "your move")
+        time.sleep(1)
         return reset
 
     def display_no_move(self):
         display("No move done","try again!")
+        time.sleep(1)
     
     def display_try_again(self):
         display("Move not legal","choose other move")
+        time.sleep(1)
+
     
     def choose_between(self,options):
         i = 0
@@ -66,4 +70,6 @@ class UserInteractor:
         display("move played:",move)
     def display(self, line1, line2):
         display(line1,line2)
+        time.sleep(1)
+
 
