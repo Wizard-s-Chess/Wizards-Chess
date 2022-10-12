@@ -70,6 +70,6 @@ class UserInteractor:
         display("move played:",move)
     def display(self, line1, line2):
         display(line1,line2)
-        time.sleep(1)
+        time.sleep(3)
 
 

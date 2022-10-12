@@ -4,6 +4,7 @@ import ChessboardGraph
 import PhysicalBoard
 import UserInteractor
 from ComputerVision import ComputerVision
+from ComputerVision2 import ComputerVision as CV
 import ChessAI
 import time
 class WizardsChess:
@@ -51,15 +52,19 @@ class WizardsChess:
         is_player_turn = False
         while not(self.is_game_finished):
             if(is_player_turn):
+                #capture before
+                CV.save_pre_movement_image()
                 is_move_performed = False
                 while not(is_move_performed):
+                    
                     #we can add move suggestion here, prompt user with question, if yes, call chessAI.getMoveSuggestion and display it
                     reset = self.user_interactor.wait_for_player_confirmation()
                     if reset:
                         return
                     #input("press when played")
                     else :
-                        player_move = ComputerVision.get_player_move_from_camera(self.chess_ai.get_board())
+                        player_move = CV.get_next_move(list(self.chess_ai.get_board().legal_moves))
+                        #player_move = ComputerVision.get_player_move_from_camera(self.chess_ai.get_board())
                         if (player_move == ""):
                             self.user_interactor.display_no_move()
                         else:
