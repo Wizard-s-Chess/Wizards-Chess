@@ -64,13 +64,14 @@ class ComputerVision:
         #we could have a problem when player wants to make an illegal move
         if len(changed_squares) == 1:
             #check for legal moves and return it if there's exactly one that corresponds to the move we have but a problem might be that the person makes an illegal move and by chance the piece that detected the difference cna be moved in another way
-            print()
-        if len(changed_squares) == 2:
-            #check both combinations and see if one matches, if none match -> illegal move
-            print()
-        if len(changed_squares) == 3:
-            #check for legal moves and return it if there's exctaly only one possible move (to avoid bad guesses), problem might appear when the player makes an illegal move and by chance one of the pieces that are detected as changed might be legal
-            print()
+            possible_moves = [a for a in legal_moves if a.contains(changed_squares[0])]
+            if len(possible_moves) == 1:
+                move = possible_moves[0]     
+        if len(changed_squares) == 2 or len(changed_squares) == 3:
+            move_combinations = ComputerVision.get_move_combinations(changed_squares)
+            possible_moves = [a for a in move_combinations if legal_moves.contains(a)]
+            if len(possible_moves) == 1:
+                move = possible_moves[0]
         if len(changed_squares) == 4:
             #should be an ideal case of detecting a castling move (=> verify if the moves correspond to a castling, if this is the case, return it)
             print()
@@ -87,3 +88,5 @@ class ComputerVision:
                 if square_changed :
                     res.append(ComputerVision.get_uci_from_coordinates((x,y)))
         return res
+    def get_move_combinations(list_squares):
+        return [x+y for x in list_squares for y in list_squares if x != y]

@@ -78,13 +78,15 @@ def get_uci_from_coordinates(coordinates):
     x = coordinates[1]
     uci = chr(x+ord('a'))+str(y+1)
     return uci
+def get_move_combinations(list_squares):
+    return [x+y for x in list_squares for y in list_squares if x != y]
 
 
 
 img_paths = load_images("./test/")
 img_paths.sort()
 last_path = "empty.jpg"
-
+legal_moves=["h2h3"]
 for img_path in img_paths:
     print(img_path)
     current_path = img_path
@@ -107,8 +109,19 @@ for img_path in img_paths:
     left_display = blank
     right_display = subtracted
     merged = np.hstack((left_display, right_display))
-    if len(res) == 2:
-        print(res)
+    changed_squares = res
+    move= ""
+    if len(changed_squares) == 1:
+            #check for legal moves and return it if there's exactly one that corresponds to the move we have but a problem might be that the person makes an illegal move and by chance the piece that detected the difference cna be moved in another way
+            possible_moves = [a for a in legal_moves if a.contains(changed_squares[0])]
+            if len(possible_moves) == 1:
+                move = possible_moves[0]     
+            if len(changed_squares) == 2 or len(changed_squares) == 3:
+                move_combinations = get_move_combinations(changed_squares)
+                possible_moves = [a for a in move_combinations if legal_moves.contains(a)]
+                if len(possible_moves) == 1:
+                    move = possible_moves[0]
+    print(move)
     #cv.imshow('sub', merged)
     #cv.waitKey(0)
     #cv.destroyAllWindows()
