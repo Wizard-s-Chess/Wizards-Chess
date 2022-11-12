@@ -4,7 +4,12 @@ import chess.engine
 
 class ChessAI:
     def __init__(self):
-        self.engine = chess.engine.SimpleEngine.popen_uci(r"/usr/games/stockfish")
+        if not (__debug__):
+            self.engine = chess.engine.SimpleEngine.popen_uci(r"/usr/games/stockfish")
+        else:
+            self.engine = chess.engine.SimpleEngine.popen_uci(
+                r"/usr/local/bin/stockfish"
+            )
         self.board = chess.Board()
 
     # Plays automatically a move on the board, and returns the move that was made
