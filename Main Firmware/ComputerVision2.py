@@ -80,11 +80,14 @@ class ComputerVision:
         with open(filename, "wb") as f:
             f.write(req.content)
 
-    def get_next_move(legal_moves):
+    def get_changed_squares():
         ComputerVision.capture("current.jpg")
         board = ComputerVision.crop_img(cv.imread("current.jpg"))
         background = ComputerVision.crop_img(cv.imread("last.jpg"))
-        changed_squares = ComputerVision.get_changed_squares(board, background)
+        return ComputerVision.get_diff(board, background)
+
+    def get_next_move(legal_moves):
+        changed_squares = ComputerVision.get_changed_squares()
         move = ""
         print("changed squares", changed_squares)
         print("legal moves",legal_moves)
@@ -106,7 +109,7 @@ class ComputerVision:
 
         return move
 
-    def get_changed_squares(current_board_img, last_board_img):
+    def get_diff(current_board_img, last_board_img):
         subtracted = cv.absdiff(current_board_img, last_board_img)
         square_shape = (subtracted.shape[0] // 8, subtracted.shape[1] // 8)
         if __debug__:

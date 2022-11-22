@@ -1,8 +1,7 @@
 import ChessboardGraph
 import PhysicalBoard
 import UserInteractor
-from ComputerVision import ComputerVision
-from ComputerVision2 import ComputerVision as CV
+from ComputerVisionProcessor import CVP
 import ChessAI
 
 
@@ -12,6 +11,7 @@ class WizardsChess:
         self.chess_ai = ChessAI.ChessAI()
         self.user_interactor = UserInteractor.UserInteractor()
         self.physical_board = PhysicalBoard.PhysicalBoard()
+        self.cvp = CVP()
         self.is_game_finished = False
         self.path_generator = ChessboardGraph.PathGenerator()
 
@@ -53,7 +53,7 @@ class WizardsChess:
         while not (self.is_game_finished):
             if is_player_turn:
                 # capture before
-                CV.save_pre_movement_image()
+                self.cvp.save_pre_movement_image()
                 is_move_performed = False
                 while not (is_move_performed):
 
@@ -63,13 +63,14 @@ class WizardsChess:
                         return
                     # input("press when played")
                     else:
-                        player_move = CV.get_next_move(
-                            list(map(
-                                lambda x: str(x),
-                                list(self.chess_ai.get_board().legal_moves),
-                            ))
+                        player_move = self.cvp.get_next_move(
+                            list(
+                                map(
+                                    lambda x: str(x),
+                                    list(self.chess_ai.get_board().legal_moves),
+                                )
+                            ),
                         )
-                        # player_move = ComputerVision.get_player_move_from_camera(self.chess_ai.get_board())
                         if player_move == "":
                             self.user_interactor.display_no_move()
                         else:
