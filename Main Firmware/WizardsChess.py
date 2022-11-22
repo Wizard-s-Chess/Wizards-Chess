@@ -65,10 +65,10 @@ class WizardsChess:
                     # input("press when played")
                     else:
                         player_move = CV.get_next_move(
-                            map(
+                            list(map(
                                 lambda x: str(x),
                                 list(self.chess_ai.get_board().legal_moves),
-                            )
+                            ))
                         )
                         # player_move = ComputerVision.get_player_move_from_camera(self.chess_ai.get_board())
                         if player_move == "":

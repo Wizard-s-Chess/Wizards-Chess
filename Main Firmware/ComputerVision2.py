@@ -66,8 +66,8 @@ class ComputerVision:
         )
 
     def get_uci_from_coordinates(coordinates):
-        y = 7 - coordinates[0]
-        x = coordinates[1]
+        y = coordinates[0]
+        x = 7-coordinates[1]
         uci = chr(x + ord("a")) + str(y + 1)
         return uci
 
@@ -87,6 +87,7 @@ class ComputerVision:
         changed_squares = ComputerVision.get_changed_squares(board, background)
         move = ""
         print("changed squares", changed_squares)
+        print("legal moves",legal_moves)
         # we could have a problem when player wants to make an illegal move
         if len(changed_squares) == 1:
             # check for legal moves and return it if there's exactly one that corresponds to the move we have but a problem might be that the person makes an illegal move and by chance the piece that detected the difference cna be moved in another way
@@ -96,6 +97,7 @@ class ComputerVision:
         if len(changed_squares) == 2 or len(changed_squares) == 3:
             move_combinations = ComputerVision.get_move_combinations(changed_squares)
             possible_moves = [a for a in move_combinations if (a in legal_moves)]
+            print(possible_moves)
             if len(possible_moves) == 1:
                 move = possible_moves[0]
         if len(changed_squares) == 4:
