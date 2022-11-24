@@ -1,15 +1,16 @@
 import serial
 from ComputerVision2 import ComputerVision as CV
 
-ser = serial.Serial("/dev/tty.raspberrypi", timeout=1, baudrate=9600)
-serial.flushInput()
-serial.flushOutput()
+ser = serial.Serial("/dev/tty.raspberrypi", timeout=None, baudrate=9600)
+ser.flushInput()
+ser.flushOutput()
 
 while True:
-    out = serial.read(1).decode()
+    out = ser.read(1).decode()
+    print(out)
     if out == "d":
         changed_squares = CV.get_changed_squares()
-        serial.write(bytes(changed_squares, "ascii"))
+        ser.write(bytes(changed_squares, "ascii"))
     if out == "p":
         CV.save_pre_movement_image()
-        serial.write("o")
+        ser.write("o")
