@@ -1,7 +1,7 @@
 # Wizard's Chess ♟️⚡
 
 # Automated Chess Board Report
-
+![board showcase](pictures/wizards-chess.gif)
 ## Introduction
 
 ### Description
