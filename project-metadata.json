@@ -1,8 +1,7 @@
 {
-      title: "Wizard's Chess",
-      img_path: "https://github.com/Wizard-s-Chess/Wizards-Chess/blob/main/pictures/wizards-chess.gif",
-      description:
-        "A chess board that automatically moves the pieces",
-      tags: ["Robotics","Computer Vision"],
-      langs: ["C/C++","Python"]
-    }
+  "title": "Wizard's Chess",
+  "img_path": "https://github.com/Wizard-s-Chess/Wizards-Chess/blob/main/pictures/wizards-chess.gif",
+  "description": "A chess board that automatically moves the pieces",
+  "tags":["Robotics","Computer Vision"],
+  "langs": ["C/C++","Python"]
+}
