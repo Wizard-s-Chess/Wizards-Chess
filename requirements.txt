@@ -1,6 +1,0 @@
-networkx
-chess
-matplotlib
-numpy
-opencv
-imutils
